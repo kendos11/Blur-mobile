@@ -1404,7 +1404,7 @@ setTimeout(()=>{build('city');stripProceduralWorld();lightsMenu(true);ui();$('pc
 const IS_TOUCH=(navigator.maxTouchPoints>0&&matchMedia('(pointer:coarse)').matches)||/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 document.body.classList.add(IS_TOUCH?'touch':'kb');
 let curScr='scHome';const showScr=id=>{curScr=id;['scHome','scSP','scCar','scBots'].forEach(s=>$(s).classList.toggle('on',s==id));applyMenuView(id)};
-$('bSP').onclick=()=>{showScr('scSP');ui()};$('bBack').onclick=()=>showScr('scHome');
+$('bSP').onclick=()=>{showScr('scSP');ui()};$('bMP').onclick=()=>{const o=$('mpOverlay');o.classList.add('on');o.setAttribute('aria-hidden','false');$('mpHome').hidden=false;$('mpLobby').hidden=true;try{if(typeof mpOpen==='function')mpOpen();else{const st=$('mpStatus');if(st)st.textContent='Multiplayer kodi yuklanmadi (2-skript xato). Sahifani Ctrl+Shift+R bilan yangilang.'}}catch(e){const st=$('mpStatus');if(st)st.textContent='Xato: '+e.message}};$('bBack').onclick=()=>showScr('scHome');
 
 const _ui32=ui;ui=function(){_ui32();$('lpn').textContent=sel.laps+' ta aylana tanlandi'};
 // Start: landscape'ga urinish + orbs
