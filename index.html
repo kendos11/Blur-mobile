@@ -258,7 +258,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <div class="ctl" id="ctl"><div id="steerBtns"><div class="steerBtn" id="leftBtn">◀<small>CHAP</small></div><div class="steerBtn" id="rightBtn">▶<small>O'NG</small></div></div>
  <div class="cr"><div class="items"><div class="ib" id="bt">⇄<small>ALMASH</small></div><div class="ib" id="bk">↩<small>TASHLA</small></div><div class="ib empty" id="bu"></div></div>
  <div class="pedals"><div class="ped" id="bb">BRAKE</div><div class="ped" id="bg">GAS</div></div></div></div>
-<div id="verTag" style="position:fixed;right:6px;top:6px;z-index:99998;font:700 10px Arial;color:#19e3ff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none">v6</div>
+<div id="verTag" style="position:fixed;right:6px;top:6px;z-index:99998;font:700 10px Arial;color:#19e3ff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none">v8</div>
 <div id="mpOverlay" aria-hidden="true">
  <div class="mpCard">
   <div class="mpHead"><button id="mpBack">‹</button><div><b>BLUR MOBILE</b><small>ONLINE MULTIPLAYER · 2–6</small></div></div>
@@ -1459,15 +1459,21 @@ addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight
 /* ===== MP V1: PeerJS, host lobby, state sync, deterministic pickups ===== */
 const MP_ICE={
  iceServers:[
+  {urls:'stun:stun.relay.metered.ca:80'},
   {urls:'stun:stun.l.google.com:19302'},
-  {urls:'stun:stun1.l.google.com:19302'},
   {urls:'stun:stun.cloudflare.com:3478'},
-  {urls:'stun:openrelay.metered.ca:80'},
-  {urls:'turn:openrelay.metered.ca:80',username:'openrelayproject',credential:'openrelayproject'},
-  {urls:'turn:openrelay.metered.ca:443',username:'openrelayproject',credential:'openrelayproject'},
-  {urls:'turn:openrelay.metered.ca:443?transport=tcp',username:'openrelayproject',credential:'openrelayproject'}
+  {urls:'turn:global.relay.metered.ca:80',username:'93890cee57e35bd8bf74aaa3',credential:'BoCZzSqUcsyPJsdD'},
+  {urls:'turn:global.relay.metered.ca:80?transport=tcp',username:'93890cee57e35bd8bf74aaa3',credential:'BoCZzSqUcsyPJsdD'},
+  {urls:'turn:global.relay.metered.ca:443',username:'93890cee57e35bd8bf74aaa3',credential:'BoCZzSqUcsyPJsdD'},
+  {urls:'turns:global.relay.metered.ca:443?transport=tcp',username:'93890cee57e35bd8bf74aaa3',credential:'BoCZzSqUcsyPJsdD'}
  ]
 };
+/* ===== BEPUL TURN (internet orqali ulanish uchun) =====
+   1) https://www.metered.ca da bepul ro'yxatdan o'ting -> "TURN Server" -> app yarating
+   2) APP = app nomi (masalan "blurgame" -> blurgame.metered.live), KEY = API Key
+   3) Pastdagi ikki qatorga yozing, faylni GitHubga yuklang. */
+window.__turnOK=true;const MP_METERED={app:'',key:''};
+(function(){if(!MP_METERED.app||!MP_METERED.key)return;fetch('https://'+MP_METERED.app+'.metered.live/api/v1/turn/credentials?apiKey='+MP_METERED.key).then(r=>r.json()).then(list=>{if(Array.isArray(list)&&list.length){MP_ICE.iceServers=list.concat([{urls:'stun:stun.l.google.com:19302'}]);window.__turnOK=true;const vt=document.getElementById('verTag');if(vt)vt.textContent+=' · TURN ✓'}}).catch(e=>{window.__showErr&&window.__showErr('TURN yuklanmadi: '+e.message)})})();
 /* TURN uchun o'zingizning credentiallaringiz bo'lsa, faqat MP_ICE ichidagi username/credentialni almashtiring. */
 let MP=false,mpRole='',mpPeer=null,mpHostConn=null,mpConns=new Map(),mpRoom='',mpName='',mpPlayers=[],mpOffset=0,mpSeed=11,mpStartAt=0,mpTimer=0,mpStarted=false,mpRemote=new Map(),mpSamples=new Map(),mpPicked=new Set(),mpPendingPick=new Set(),mpProj=[],mpLastState=0,mpTest={packets:0,picks:0,hits:0};let mpFinish=new Map(),mpResultSent=false;
 const mpEl=id=>document.getElementById(id),mpNow=()=>Date.now()+mpOffset,mpRid=()=>String(Math.floor(1000+Math.random()*9000));
@@ -1490,8 +1496,8 @@ function mpCreateRemotes(players){players.forEach(p=>{if(p.id===mpMyId())return;
 function mpDisconnected(id){if(mpRole==='host'){const i=mpPlayers.findIndex(p=>p.id===id);if(i>=0){const p=mpPlayers.splice(i,1)[0];mpConns.delete(id);mpPlayers.forEach((x,j)=>x.grid=j);const r=mpRemote.get(id);if(r){scene.remove(r.m);cars=cars.filter(c=>c!==r);mpRemote.delete(id)}mpBroadcast(mpHostSnapshot());mpLobbyStatus(p.name+' chiqib ketdi')}}else if(mpHostConn&&id===mpHostConn.peer){mpClean();if(state!=='menu')toMenu();mpOpen();mpStatus('Host chiqib ketdi')}}
 function mpHandle(conn,m){if(!m||!m.t)return;if(m.t==='hello'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.name=String(m.name||p.name).slice(0,16);p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='car'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='lobby'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpPlayers=m.players||[];sel.laps=m.laps||3;mpRoom=m.room||mpRoom;mpRenderLobby();return}if(m.t==='car'&&mpRole!=='host'){sel.car=clamp(+m.car||0,0,CARS.length-1);const me=mpPlayers.find(p=>p.id===mpMyId());if(me)me.car=sel.car;mpEl('mpMyCar').textContent=CARS[sel.car].name;mpSend(mpHostConn,{t:'hello',name:mpName,car:sel.car});return}if(m.t==='laps'&&mpRole!=='host'){sel.laps=+m.n||3;mpRenderLobby();return}if(m.t==='start'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpBeginLocal(m);return}if(m.t==='state'){mpRecvState(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='pickup'){mpHandlePickup(m,conn.peer);return}if(m.t==='use'){mpHandleUse(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='hit'){mpHandleHit(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='finish'){mpHandleFinish(m);return}if(m.t==='results'){mpApplyResults(m);return}if(m.t==='seed'){mpSeed=m.seed;mpSeedBonuses();return}if(m.t==='full'){mpStatus('Xona to\'la (maksimum 6)');return}}
 function mpBroadcastExcept(skip,msg){mpConns.forEach((c,id)=>{if(id!==skip)mpSend(c,msg)})}
-function mpConnectHost(code){MP=true;mpRoom=String(code).replace(/\D/g,'').slice(0,4);if(mpRoom.length!==4){mpStatus('4 xonali kod kiriting');return}mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);sel.bots=[];mpStatus('Ulanmoqda…');mpPeer=new Peer(undefined,{config:MP_ICE,debug:1});mpPeer.on('open',()=>{mpHostConn=mpPeer.connect(mpRoom,{reliable:true,metadata:{name:mpName,car:sel.car}});mpSetupConn(mpHostConn,false);const hc=mpHostConn;clearTimeout(window.__mpJT);window.__mpJT=setTimeout(()=>{if(hc===mpHostConn&&!hc.open)mpStatus('Ulanib bo\'lmadi (15s). Xona egasi lobbida turganini tekshiring. Turli tarmoq (LTE/Wi-Fi) bo\'lsa TURN server kerak.')},15000);hc.on('open',()=>clearTimeout(window.__mpJT))});mpPeer.on('error',e=>mpStatus('Ulanish xatosi: '+(e.type||e.message)));mpPeer.on('connection',c=>{});}
-function mpCreateHost(){MP=true;mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);mpStatus('Xona ochilmoqda…');const code=mpRid();mpRoom=code;mpPeer=new Peer(code,{config:MP_ICE,debug:1});mpRole='host';mpPeer.on('open',id=>{mpRoom=id;mpPlayers=[{id,name:mpName,car:sel.car,grid:0}];mpShowLobby();mpLobbyStatus('Do\'stlaringizga '+id+' kodini yuboring')});mpPeer.on('connection',c=>mpSetupConn(c,true));mpPeer.on('error',e=>{if(e.type==='unavailable-id'){try{mpPeer.destroy()}catch(_){};mpRole='';setTimeout(mpCreateHost,200)}else mpStatus('Xona xatosi: '+(e.type||e.message))})}
+function mpConnectHost(code){MP=true;mpRoom=String(code).replace(/\D/g,'').slice(0,4);if(mpRoom.length!==4){mpStatus('4 xonali kod kiriting');return}mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);sel.bots=[];mpStatus('Ulanmoqda…');mpPeer=new Peer(undefined,{config:MP_ICE,debug:1});mpPeer.on('open',()=>{mpHostConn=mpPeer.connect(mpRoom,{reliable:true,metadata:{name:mpName,car:sel.car}});mpSetupConn(mpHostConn,false);const hc=mpHostConn;setTimeout(()=>{try{const pc=hc.peerConnection;if(pc)pc.addEventListener('iceconnectionstatechange',()=>mpStatus('Aloqa: '+pc.iceConnectionState+(window.__turnOK?'':' (TURN yo\'q)')))}catch(_){}},400);clearTimeout(window.__mpJT);window.__mpJT=setTimeout(()=>{if(hc===mpHostConn&&!hc.open)mpStatus('Ulanib bo\'lmadi (15s). Xona egasi lobbida turganini tekshiring. Turli tarmoq (LTE/Wi-Fi) bo\'lsa TURN server kerak.')},15000);hc.on('open',()=>clearTimeout(window.__mpJT))});mpPeer.on('error',e=>mpStatus('Ulanish xatosi: '+(e.type||e.message)));mpPeer.on('connection',c=>{});}
+function mpCreateHost(){MP=true;mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);mpStatus('Xona ochilmoqda…');const code=mpRid();mpRoom=code;mpPeer=new Peer(code,{config:MP_ICE,debug:1});mpRole='host';mpPeer.on('open',id=>{mpRoom=id;mpPlayers=[{id,name:mpName,car:sel.car,grid:0}];mpShowLobby();mpLobbyStatus('Do\'stlaringizga '+id+' kodini yuboring')});mpPeer.on('connection',c=>{mpLobbyStatus('Ulanish so\'rovi keldi…');mpSetupConn(c,true)});mpPeer.on('error',e=>{if(e.type==='unavailable-id'){try{mpPeer.destroy()}catch(_){};mpRole='';setTimeout(mpCreateHost,200)}else mpStatus('Xona xatosi: '+(e.type||e.message))})}
 function mpSeeded(){mpSeed=(mpSeed*1664525+1013904223)>>>0;return mpSeed/4294967296}
 function mpSeedBonuses(){if(!px||!S)return;const save=Math.random;Math.random=mpSeeded;try{_spawnOrbsMP()}finally{Math.random=save}orbs.forEach((w,i)=>{if(pk[i]){pk[i].mpId=i;pk[i].t=mpPicked.has(i)?9:0;w.visible=pk[i].t<=0}})}
 const _spawnOrbsMP=spawnOrbs;spawnOrbs=function(){if(!MP)return _spawnOrbsMP();return mpSeedBonuses()};
@@ -1534,6 +1540,6 @@ const _toMenuSP=toMenu;toMenu=function(){if(MP&&mpRole){mpEndToMenu();return}_to
 if(window.Peer){/* PeerJS loaded */}else{setTimeout(()=>mpStatus('PeerJS yuklanmadi'),1000)}
 (function mpBoot(){const oldStart=mpBeginLocal;mpBeginLocal=async function(msg){MP=true;return oldStart(msg)}})();
 requestAnimationFrame(mpNetLoop);requestAnimationFrame(mpRenderRemote);requestAnimationFrame(mpProjLoop);
-try{const vt=document.getElementById('verTag');vt.textContent+=' · MP kodi ✓';window.addEventListener('load',()=>{vt.textContent+=typeof Peer!=='undefined'?' · PeerJS ✓':' · PeerJS ✗'})}catch(_){}
+try{const vt=document.getElementById('verTag');vt.textContent+=' · MP kodi ✓';window.addEventListener('load',()=>{vt.textContent+=typeof Peer!=='undefined'?' · PeerJS ✓'+(window.__turnOK?' · TURN ✓':''):' · PeerJS ✗'})}catch(_){}
 
 </script></body></html>
