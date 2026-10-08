@@ -258,6 +258,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <div class="ctl" id="ctl"><div id="steerBtns"><div class="steerBtn" id="leftBtn">◀<small>CHAP</small></div><div class="steerBtn" id="rightBtn">▶<small>O'NG</small></div></div>
  <div class="cr"><div class="items"><div class="ib" id="bt">⇄<small>ALMASH</small></div><div class="ib" id="bk">↩<small>TASHLA</small></div><div class="ib empty" id="bu"></div></div>
  <div class="pedals"><div class="ped" id="bb">BRAKE</div><div class="ped" id="bg">GAS</div></div></div></div>
+<div id="verTag" style="position:fixed;right:6px;top:6px;z-index:99998;font:700 10px Arial;color:#19e3ff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none">v4</div>
 <div id="mpOverlay" aria-hidden="true">
  <div class="mpCard">
   <div class="mpHead"><button id="mpBack">‹</button><div><b>BLUR MOBILE</b><small>ONLINE MULTIPLAYER · 2–6</small></div></div>
@@ -1531,5 +1532,6 @@ const _toMenuSP=toMenu;toMenu=function(){if(MP&&mpRole){mpEndToMenu();return}_to
 if(window.Peer){/* PeerJS loaded */}else{setTimeout(()=>mpStatus('PeerJS yuklanmadi'),1000)}
 (function mpBoot(){const oldStart=mpBeginLocal;mpBeginLocal=async function(msg){MP=true;return oldStart(msg)}})();
 requestAnimationFrame(mpNetLoop);requestAnimationFrame(mpRenderRemote);requestAnimationFrame(mpProjLoop);
+try{const vt=document.getElementById('verTag');vt.textContent+=' · MP kodi ✓';window.addEventListener('load',()=>{vt.textContent+=typeof Peer!=='undefined'?' · PeerJS ✓':' · PeerJS ✗'})}catch(_){}
 
 </script></body></html>
