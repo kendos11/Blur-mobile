@@ -360,13 +360,15 @@ body.wheelOn #wheel{display:block}
 #mpHome .mpJoinRow{flex-direction:column}#mpJoinGo{height:48px}
 #mpSlots{position:fixed;inset:0;z-index:62;display:none;padding:calc(env(safe-area-inset-top,0px) + 46px) 10px calc(env(safe-area-inset-bottom,0px) + 66px);pointer-events:none}
 #mpSlots.on{display:block}
-#mpSlots .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;height:100%}
+#mpSlots .grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:8px;height:100%}
+#mpSlots .sn b{display:block;font:800 13px Arial}#mpSlots .sn small{display:block;font:600 10px Arial;color:#9fd0ff;margin-top:1px}
+#mpHome:not(.joinMode) .mpJoinRow{display:none}#mpHome.joinMode .mpBtns{display:none}
 #mpSlots .sl{position:relative;border:2px solid rgba(70,170,255,.6);border-radius:12px;background:rgba(10,30,90,.18);box-shadow:0 0 18px rgba(30,140,255,.3) inset}
 #mpSlots .sl.full{border-color:#ffb02e}
 #mpSlots .sn{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:800 13px Arial;color:#fff;text-shadow:0 1px 6px #000;padding:0 4px;overflow:hidden;white-space:nowrap}
 #mpSlots .tk{position:absolute;top:6px;right:6px;width:22px;height:22px;border:2px solid #fff;border-radius:5px;display:none;align-items:center;justify-content:center;color:transparent;font:900 15px Arial}
 #mpSlots .tk.on{background:#2ee66b;border-color:#2ee66b;color:#06210f}
-#mpSlots .ca{position:absolute;bottom:30px;left:0;right:0;justify-content:space-between;padding:0 4px;display:none;pointer-events:auto}
+#mpSlots .ca{position:absolute;bottom:46px;left:0;right:0;justify-content:space-between;padding:0 4px;display:none;pointer-events:auto}
 #mpSlots .ca button{width:30px;height:30px;border-radius:50%;border:1px solid #19e3ff;background:rgba(0,0,0,.45);color:#fff;font-size:18px;padding:0}
 #slCode{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:0;right:0;text-align:center;font:900 18px Arial;letter-spacing:5px;color:#fff;text-shadow:0 0 12px #19a8ff}
 #slBack{position:absolute;left:calc(env(safe-area-inset-left,0px) + 12px);top:calc(env(safe-area-inset-top,0px) + 8px);width:36px;height:36px;border-radius:50%;pointer-events:auto;border:1px solid #19e3ff;background:rgba(0,0,0,.5);color:#fff;font-size:20px;padding:0}
@@ -374,7 +376,29 @@ body.wheelOn #wheel{display:block}
 #slBtns button{padding:12px 20px;border-radius:12px;border:1px solid #19e3ff;background:rgba(25,227,255,.15);color:#fff;font:900 14px Arial;letter-spacing:1px}
 #slReady.on{background:#2ee66b;color:#06210f;border-color:#2ee66b}
 #slStart{background:linear-gradient(135deg,#ff8a2a,#ffb455);color:#1a0c00;border-color:#ffb455}#slStart:disabled{opacity:.4;filter:grayscale(.6)}
-</style></head><body>
+
+#slChat{position:absolute;left:calc(env(safe-area-inset-left,0px) + 12px);bottom:calc(env(safe-area-inset-bottom,0px) + 10px);display:flex;gap:5px;align-items:center;pointer-events:auto;max-width:calc(100% - 330px)}
+#slChat button{width:34px;height:36px;border-radius:9px;border:1px solid rgba(25,227,255,.6);background:rgba(0,0,0,.45);color:#fff;font-size:17px;padding:0;flex:none}
+#slChat input{flex:1;min-width:80px;height:36px;border-radius:9px;border:1px solid rgba(25,227,255,.6);background:rgba(0,0,0,.5);color:#fff;padding:0 8px;font-size:14px}
+#slLog{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:calc(env(safe-area-inset-right,0px) + 12px);max-width:34vw;text-align:right;font:700 12px Arial;color:#ffe08a;text-shadow:0 1px 6px #000}
+</style><style id="v39css">
+/* ===== V39 · BOSQICH 1 ===== */
+#fpsBox{display:none;position:fixed;right:calc(env(safe-area-inset-right,0px) + 150px);top:6px;z-index:99997;font:800 10px Arial;letter-spacing:1px;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none}
+#rs{border-color:#ff7a1a;color:#ffb347}
+#wrongWay{left:50%;transform:translateX(-50%);top:30%;display:none;text-align:center;padding:10px 18px;border-radius:14px;background:rgba(120,0,16,.74);border:2px solid #ff3b3b;box-shadow:0 0 24px rgba(255,59,59,.55);animation:v39blink .7s ease-in-out infinite;pointer-events:none;white-space:nowrap}
+#wrongWay.on{display:block}
+#wrongWay b{display:block;font:900 20px Arial;letter-spacing:2px;color:#fff}
+#wrongWay small{display:block;font:700 10px Arial;letter-spacing:1px;color:#ffd0d6;margin-top:3px}
+.pinfo{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.pinfo>div{padding:6px 4px;border-radius:10px;background:rgba(255,255,255,.06);text-align:center;min-width:0}
+.pinfo small{display:block;font:700 8px Arial;letter-spacing:2px;color:#19e3ff}
+.pinfo b{display:block;font:900 14px Arial;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pnote{font:800 10px Arial;letter-spacing:1px;color:#ffd23d;text-align:center}
+@keyframes v39blink{0%,100%{opacity:1}50%{opacity:.55}}
+@media(max-width:560px){.pinfo{grid-template-columns:repeat(2,1fr)}}
+@media(max-height:430px){#wrongWay{top:26%}#wrongWay b{font-size:16px}}
+</style>
+</head><body>
 <div id="fx"></div>
 <div id="hud">
  <div id="fans"><small>FANS</small><b id="fn">0</b><div id="fbar"><i></i></div></div>
@@ -391,7 +415,7 @@ body.wheelOn #wheel{display:block}
  <div class="cr"><div class="items"><div class="ib" id="bt">⇄<small>ALMASH</small></div><div class="ib" id="bk">↩<small>TASHLA</small></div><div class="ib empty" id="bu"></div></div>
  <div class="pedals"><div class="ped" id="bb">BRAKE</div><div class="ped" id="bg">GAS</div></div></div></div>
 <span id="tn" hidden></span><span id="td" hidden></span>
-<div id="verTag" style="position:fixed;right:6px;top:6px;z-index:99998;font:700 10px Arial;color:#19e3ff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none">V38</div>
+<div id="verTag" style="position:fixed;right:6px;top:6px;z-index:99998;font:700 10px Arial;color:#19e3ff;background:rgba(0,0,0,.55);padding:3px 6px;border-radius:6px;pointer-events:none">V39</div>
 <div id="mpOverlay" aria-hidden="true">
  <div class="mpCard">
   <div class="mpHead"><button id="mpBack">‹</button><div><b>BLUR MOBILE</b><small>ONLINE MULTIPLAYER · 2–6</small></div></div>
@@ -966,7 +990,7 @@ let drag=null;addEventListener('pointerdown',e=>{if(state=='menu'&&e.target===re
 const showOvEl=h=>{$('ov').innerHTML='<div class="card glass">'+h+'</div>';$('ov').style.display='flex'};
 function showOv(k){if(k=='pause')showOvEl(`<h2>PAUZA</h2><div class=grid><button class="pb pr" onclick="pause(false)">▶ Davom etish</button><button class=pb onclick="restart()">↻ Qaytadan</button><button class=pb onclick="resetP()">⤴ Trassaga qaytish</button><button class=pb onclick="showOv('set')">⚙ Sozlamalar</button></div><button class="pb dn" onclick="toMenu()">⏏ Menyuga chiqish</button>`);
  else if(k=='set'){const q=['Past','O\'rta','Yuqori'];showOvEl(`<h2>SOZLAMALAR</h2><div class=lbl>Grafika sifati</div><div class=row>${q.map((n,i)=>`<button class="b${settings.q==i?' sel':''}" onclick="settings.q=${i};applyQ();showOv('set')">${n}</button>`).join('')}</div><div class=lbl>Ovoz</div><div class=row><button class="b${settings.snd?' sel':''}" onclick="settings.snd=true;audioStart();showOv('set')">Yoqilgan</button><button class="b${!settings.snd?' sel':''}" onclick="settings.snd=false;showOv('set')">O'chirilgan</button></div><button class="pb pr" onclick="closeSet()">Orqaga</button>`)}
- else if(k=='res'){const r=[...cars].sort((a,b)=>(a.fin&&b.fin?a.ft-b.ft:a.fin?-1:b.fin?1:b.total-a.total)),me=r.indexOf(P)+1;showOvEl(`<h2>${me==1?'🏆 G\'ALABA!':me+'-O\'RIN'}</h2><div class=lbl style="color:#ffd23d">FANS ${Math.round(fansV).toLocaleString()}</div><div class=stand>${r.map((c,i)=>`<div class="${c===P?'me':''}"><span>${i+1}. ${c.sp.name}</span><span>${c.fin?fmt(c.ft):'—'}</span></div>`).join('')}</div><div class=grid><button class="pb pr" onclick="restart()">↻ Qayta</button><button class=pb onclick="toMenu()">⏏ Menyu</button></div>`)}}
+ else if(k=='res'){const r=[...cars].sort((a,b)=>(a.fin&&b.fin?a.ft-b.ft:a.fin?-1:b.fin?1:b.total-a.total)),me=r.indexOf(P)+1;showOvEl(`<h2>${me==1?'🏆 G\'ALABA!':me+'-O\'RIN'}</h2><div class=lbl style="color:#ffd23d">FANS ${Math.round(fansV).toLocaleString()}</div>${window.bestHtml?bestHtml():''}<div class=stand>${r.map((c,i)=>`<div class="${c===P?'me':''}"><span>${i+1}. ${MP?(c.remote?c.mpName:mpName)+' · ':''}${c.sp.name}</span><span>${c.fin?fmt(c.ft):'—'}</span></div>`).join('')}</div><div class=grid><button class="pb pr" onclick="restart()">↻ Qayta</button><button class=pb onclick="toMenu()">⏏ Menyu</button></div>`)}}
 function closeSet(){if(state=='menu')$('ov').style.display='none';else showOv('pause')}
 function pause(on){if(state!='race'&&state!='count')return;paused=on;on?showOv('pause'):$('ov').style.display='none'}
 $('pz').onclick=()=>pause(true);$('mset').onclick=()=>showOv('set');$('cm').onclick=()=>{camMode=(camMode+1)%4;if(P)P.m.visible=camMode!=2;try{toast(['KAMERA: ORQADAN','KAMERA: YAQIN','KAMERA: SALON','KAMERA: YAQIN-YUQORI'][camMode])}catch(_){}};
@@ -999,7 +1023,7 @@ function sfx(k){if(!ac||!settings.snd)return;const t=ac.currentTime,o=ac.createO
 // ---------- physics
 const ENG={I4:{i:850,r:6900,cy:4},I4t:{i:900,r:6800,cy:4},I6t:{i:850,r:7000,cy:6},V6t:{i:900,r:6800,cy:6},V8:{i:750,r:6400,cy:8},V8t:{i:800,r:7000,cy:8},V8f:{i:900,r:8000,cy:8},V10:{i:900,r:8500,cy:10},F6:{i:900,r:7800,cy:6},F4:{i:850,r:6500,cy:4},W16:{i:800,r:6500,cy:16},V12:{i:900,r:8800,cy:12},EV:{i:0,r:14000,cy:0}};
 const GF={6:[.26,.42,.58,.73,.87,1],1:[1]};
-function locate(c){let best=1e18,bi=c.idx;for(let i=0;i<S;i++){const dx=c.x-px[i],dz=c.z-pz[i],d=dx*dx+dz*dz;if(d<best){best=d;bi=i}} if(c.idx>S*.8&&bi<S*.2)c.laps++;else if(c.idx<S*.2&&bi>S*.8)c.laps--;c.idx=bi;c.lat=(c.x-px[bi])*-tz[bi]+(c.z-pz[bi])*tx[bi];c.total=c.laps*L+bi*step}
+function locate(c){let best=1e18,bi=c.idx;for(let i=0;i<S;i++){const dx=c.x-px[i],dz=c.z-pz[i],d=dx*dx+dz*dz;if(d<best){best=d;bi=i}} if(c.idx>S*.8&&bi<S*.2){c.laps++;if(c.isP&&window.lapDone)lapDone(c)}else if(c.idx<S*.2&&bi>S*.8)c.laps--;c.idx=bi;c.lat=(c.x-px[bi])*-tz[bi]+(c.z-pz[bi])*tx[bi];c.total=c.laps*L+bi*step}
 function resetCar(c,spd){const i=c.idx,p=spot(i,0);c.x=p[0];c.z=p[1];c.yaw=Math.atan2(tx[i],tz[i]);c.vx=tx[i]*spd;c.vz=tz[i]*spd;c.yr=0;c.sIn=0;c.stun=0;c.gear=1;locate(c)}
 function phys(c,dt,steer,thr,brk){
  const sp=c.sp,m=c.mass,T=sp.t,wb=T.wb||T.L*.6,A=wb*.46,B=wb-A,wf=B/wb,Iz=m*A*B*1.1,g=9.81,dr=sp.dr,en=ENG[sp.eng],G=sp.eng=='EV'?1:6,gf=GF[G];
@@ -1009,7 +1033,7 @@ function phys(c,dt,steer,thr,brk){
  if(c.inv>0)c.inv-=dt;
  if(c.isP){c.thrS+=(thr-c.thrS)*Math.min(1,dt*8);c.brkS+=((brk?1:0)-c.brkS)*Math.min(1,dt*9);thr=c.thrS}else c.brkS=brk?1:0;
  if(c.slowT>0)thr*=.6;c.thrNow=thr;const bk=c.brkS,rev=bk>.5&&u<1.2&&thr<.1&&c.isP,hb=bk>.5&&c.isP&&u>15&&Math.abs(c.sIn)>.3&&!rev;c.drifting=hb;
- c.sIn+=(steer-c.sIn)*Math.min(1,dt*(c.isP?7.5:10));
+ c.sIn+=(steer-c.sIn)*Math.min(1,dt*(c.isP?7.5*(settings.sens||1):10));
  const vtop=sp.top*1.04,dmgF=.8+.2*clamp(c.hp,0,100)/100,a0=1.02*27.8/sp.acc,vt=sp.top*c.topMul*dmgF*(c.boost>0?1.28:1)*(c.slowT>0?.55:1);
  if(c.slowT>0)c.slowT-=dt;if(c.boost>0)c.boost-=dt;if(c.air>0){c.air-=dt;if(c.air<=0)c.boost=1.5}
  let gi=c.gear;if(c.shiftT>0)c.shiftT-=dt;const au0=Math.abs(u);
@@ -1146,7 +1170,7 @@ function clearRace(){cars.forEach(c=>scene.remove(c.m));proj.forEach(p=>scene.re
 function clearHud(){$('toast').textContent='';$('big').textContent='';toastT=0;$('fx').className=''}
 function startRace(){
  if(!glbTrackReady){$('ld').style.display='flex';$('ld').textContent='Race track hali yuklanmoqda…';return}
- audioStart();clearRace();clearHud();$('menu').classList.add('raceHidden');$('menu').style.display='none';$('mset').style.display='none';$('hud').style.display='block';$('ctl').style.display='flex';LAPS=sel.laps;state='count';cd=3.4;raceT=0;paused=false;stuckT=0;camMode=0;itKey='';hpKey=''
+ audioStart();clearRace();clearHud();$('menu').classList.add('raceHidden');$('menu').style.display='none';$('mset').style.display='none';$('hud').style.display='block';$('ctl').style.display='flex';LAPS=sel.laps;state='count';cd=3.4;raceT=0;paused=false;stuckT=0;camMode=(window.camSaved?camSaved():0);itKey='';hpKey=''
  if(pv){scene.remove(pv);pv=null}stripProceduralWorld();lightsMenu(false);$('menu').style.display='none';$('mset').style.display='none';$('hud').style.display='block';$('ctl').style.display='flex';$('ov').style.display='none';
  const sp=CARS[sel.car];P=mkRacer(sp,sp.col,0,true);cars=[P];(sel.bots||[]).forEach((ci,j)=>{const bs=CARS[ci];cars.push(mkRacer(bs,bs.col,j+1,false))});fansV=0;fanUI();$('pop').innerHTML='';
  
@@ -1189,10 +1213,10 @@ function tick(now){requestAnimationFrame(tick);const dt0=Math.min(.04,(now-last)
  
  const spd=Math.hypot(P.vx,P.vz),tgt=spd>8?Math.atan2(P.vx,P.vz):P.yaw,hd=P.yaw+Math.atan2(Math.sin(tgt-P.yaw),Math.cos(tgt-P.yaw))*.45;let e=hd-camH;e=Math.atan2(Math.sin(e),Math.cos(e));camH+=e*Math.min(1,dt*5);
  shake*=Math.exp(-4*dt);const sk=shake*.25+(P.boost>0?.04:0);
- if(camMode==2){const ey=P.m.userData.eye,fx=Math.sin(P.yaw),fz=Math.cos(P.yaw);cam.position.set(P.x+fx*ey[2],ey[1],P.z+fz*ey[2]);cam.lookAt(P.x+fx*30,ey[1]-.15,P.z+fz*30)}
+ camVis();if(camMode==4||camMode==5)camFirstPerson();else if(camMode==2){const ey=P.m.userData.eye,fx=Math.sin(P.yaw),fz=Math.cos(P.yaw);cam.position.set(P.x+fx*ey[2],ey[1],P.z+fz*ey[2]);cam.lookAt(P.x+fx*30,ey[1]-.15,P.z+fz*30)}
  else if(camMode==3){camTarget.set(P.x-Math.sin(camH)*4.3,(P.gy||0)+2.35,P.z-Math.cos(camH)*4.3);cam.position.copy(camTarget);cam.lookAt(P.x+Math.sin(camH)*9,(P.gy||0)+.8,P.z+Math.cos(camH)*9)}
  else{const dist=(camMode?4.4:5.6)+spd*.009,h=(camMode?1.55:2.05)+spd*.0022;camTarget.set(P.x-Math.sin(camH)*dist,(P.gy||0)+h,P.z-Math.cos(camH)*dist);cam.position.lerp(camTarget,Math.min(1,dt*10));cam.position.x+=(Math.random()-.5)*sk;cam.position.y+=(Math.random()-.5)*sk;cam.lookAt(P.x+Math.sin(camH)*18,(P.gy||0)+1.0,P.z+Math.cos(camH)*18)}
- const fov=camMode==3?68:64+spd*.18+(P.boost>0?12:0);if(Math.abs(cam.fov-fov)>.1){cam.fov+=(fov-cam.fov)*.1;cam.updateProjectionMatrix()}
+ const fov=camMode==3?68:camMode==4?72+spd*.12+(P.boost>0?10:0):camMode==5?80+spd*.14+(P.boost>0?10:0):64+spd*.18+(P.boost>0?12:0);if(Math.abs(cam.fov-fov)>.1){cam.fov+=(fov-cam.fov)*.1;cam.updateProjectionMatrix()}
  dl.position.set(P.x+sunOff.x,sunOff.y,P.z+sunOff.z);dl.target.position.set(P.x,(P.gy||0),P.z);sky.position.copy(cam.position);
  $('fx').className=P.boost>0?'on':'';
  const rk=1+cars.filter(c=>c!==P&&c.total>P.total).length;$('pos').innerHTML=rk+'<sup>'+ord(rk).slice(String(rk).length)+'</sup>';if(state=='race'){if(P.lastRank&&rk<P.lastRank)fan(25,'OVERTAKE');P.lastRank=rk;if(P.drifting&&Math.abs(P.vS)>2){P.dT=(P.dT||0)+dt;if(P.dT>1){P.dT=0;fan(15,'DRIFT')}}}
@@ -1691,7 +1715,7 @@ async function mpBeginLocal(msg){MP=true;if(mpStarted)return;mpStarted=true;mpPi
 function mpPlaceLocal(grid){if(!P)return;P.mpId=mpMyId();const g=glbGridPos(grid);P.x=g.x;P.z=g.z;P.yaw=g.yaw;P.vx=0;P.vz=0;P.vF=0;P.vS=0;P.idx=g.idx;P.laps=-1;P.total=-1;locate(P)}
 function mpCreateRemotes(players){players.forEach(p=>{if(p.id===mpMyId())return;if(mpRemote.has(p.id))return;try{const sp=CARS[p.car],r=mkRacer(sp,sp.col,p.grid,false);r.remote=true;r.mpId=p.id;r.mpName=p.name;r.items=[];r.cd=999;r.lane=0;try{const g=glbGridPos(p.grid);r.x=g.x;r.z=g.z;r.yaw=g.yaw;r.vx=0;r.vz=0;r.vF=0;r.idx=g.idx;r.laps=-1;r.total=-1;r.locInit=false;locate(r);r.m.position.set(r.x,r.gy||0,r.z);r.m.rotation.y=r.yaw;r.m.visible=true}catch(_){}mpRemote.set(p.id,r);cars.push(r)}catch(e){console.error('remote car',e)}});mpRemote.forEach(r=>{r.m.visible=true;r.m.traverse(o=>{o.visible=o.visible!==false?true:o.visible;o.frustumCulled=false})})}
 function mpDisconnected(id){if(mpRole==='host'){const i=mpPlayers.findIndex(p=>p.id===id);if(i>=0){const p=mpPlayers.splice(i,1)[0];mpConns.delete(id);mpPlayers.forEach((x,j)=>x.grid=j);const r=mpRemote.get(id);if(r){scene.remove(r.m);cars=cars.filter(c=>c!==r);mpRemote.delete(id)}mpBroadcast(mpHostSnapshot());mpLobbyStatus(p.name+' chiqib ketdi')}}else if(mpHostConn&&id===mpHostConn.peer){mpClean();if(state!=='menu')toMenu();showScr('scHome');mpOpen();mpStatus('Host chiqib ketdi')}}
-function mpHandle(conn,m){if(!m||!m.t)return;if(m.t==='hello'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.name=String(m.name||p.name).slice(0,16);p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='rdy'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.rdy=!!m.v;mpBroadcast(mpHostSnapshot())}return}if(m.t==='car'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='lobby'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpPlayers=m.players||[];sel.laps=m.laps||3;mpRoom=m.room||mpRoom;if(mpRole!=='host'){mpRole='client';if(curScr!=='scMP'){mpShowLobby();mpLobbyStatus('Poygani xona egasi boshlaydi, kuting…')}}mpRenderLobby();return}if(m.t==='car'&&mpRole!=='host'){sel.car=clamp(+m.car||0,0,CARS.length-1);const me=mpPlayers.find(p=>p.id===mpMyId());if(me)me.car=sel.car;mpEl('mpMyCar').textContent=CARS[sel.car].name;mpSend(mpHostConn,{t:'hello',name:mpName,car:sel.car});return}if(m.t==='laps'&&mpRole!=='host'){sel.laps=+m.n||3;mpRenderLobby();return}if(m.t==='start'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpBeginLocal(m);return}if(m.t==='state'){mpRecvState(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='pickup'){mpHandlePickup(m,conn.peer);return}if(m.t==='use'){mpHandleUse(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='hit'){mpHandleHit(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='finish'){mpHandleFinish(m);return}if(m.t==='results'){mpApplyResults(m);return}if(m.t==='seed'){mpSeed=m.seed;mpSeedBonuses();return}if(m.t==='full'){mpStatus('Xona to\'la (maksimum 6)');return}}
+function mpHandle(conn,m){if(m&&m.t==='chat'){if(window.chatRecv)chatRecv(m);if(mpRole==='host')mpConns.forEach(c=>{if(c!==conn)mpSend(c,m)});return}if(!m||!m.t)return;if(m.t==='hello'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.name=String(m.name||p.name).slice(0,16);p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='rdy'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.rdy=!!m.v;mpBroadcast(mpHostSnapshot())}return}if(m.t==='car'&&mpRole==='host'){const p=mpPlayers.find(x=>x.id===conn.peer);if(p){p.car=clamp(+m.car||0,0,CARS.length-1);mpBroadcast(mpHostSnapshot());}return}if(m.t==='lobby'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpPlayers=m.players||[];sel.laps=m.laps||3;mpRoom=m.room||mpRoom;if(mpRole!=='host'){mpRole='client';if(curScr!=='scMP'){mpShowLobby();mpLobbyStatus('Poygani xona egasi boshlaydi, kuting…')}}mpRenderLobby();return}if(m.t==='car'&&mpRole!=='host'){sel.car=clamp(+m.car||0,0,CARS.length-1);const me=mpPlayers.find(p=>p.id===mpMyId());if(me)me.car=sel.car;mpEl('mpMyCar').textContent=CARS[sel.car].name;mpSend(mpHostConn,{t:'hello',name:mpName,car:sel.car});return}if(m.t==='laps'&&mpRole!=='host'){sel.laps=+m.n||3;mpRenderLobby();return}if(m.t==='start'){if(m.hostNow)mpOffset=m.hostNow-Date.now();mpBeginLocal(m);return}if(m.t==='state'){mpRecvState(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='pickup'){mpHandlePickup(m,conn.peer);return}if(m.t==='use'){mpHandleUse(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='hit'){mpHandleHit(m);if(mpRole==='host')mpBroadcastExcept(conn.peer,m);return}if(m.t==='finish'){mpHandleFinish(m);return}if(m.t==='results'){mpApplyResults(m);return}if(m.t==='seed'){mpSeed=m.seed;mpSeedBonuses();return}if(m.t==='full'){mpStatus('Xona to\'la (maksimum 6)');return}}
 function mpBroadcastExcept(skip,msg){mpConns.forEach((c,id)=>{if(id!==skip)mpSend(c,msg)})}
 function mpConnectHost(code){MP=true;mpRoom=String(code).replace(/\D/g,'').slice(0,4);if(mpRoom.length!==4){mpStatus('4 xonali kod kiriting');return}mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);sel.bots=[];mpStatus('Ulanmoqda…');mpPeer=new Peer(undefined,{config:MP_ICE,debug:1});mpPeer.on('open',()=>{mpHostConn=mpPeer.connect(mpRoom,{reliable:true,metadata:{name:mpName,car:sel.car}});mpSetupConn(mpHostConn,false);const hc=mpHostConn;setTimeout(()=>{try{const pc=hc.peerConnection;if(pc)pc.addEventListener('iceconnectionstatechange',()=>mpStatus('Aloqa: '+pc.iceConnectionState+(window.__turnOK?'':' (TURN yo\'q)')))}catch(_){}},400);clearTimeout(window.__mpJT);window.__mpJT=setTimeout(()=>{if(hc===mpHostConn&&!hc.open)mpStatus('Ulanib bo\'lmadi (15s). Xona egasi lobbida turganini tekshiring. Turli tarmoq (LTE/Wi-Fi) bo\'lsa TURN server kerak.')},15000);hc.on('open',()=>clearTimeout(window.__mpJT))});mpPeer.on('error',e=>mpStatus('Ulanish xatosi: '+(e.type||e.message)));mpPeer.on('connection',c=>{});}
 function mpCreateHost(){MP=true;mpName=(mpEl('mpName').value.trim()||'Player').slice(0,16);mpStatus('Xona ochilmoqda…');const code=mpRid();mpRoom=code;mpPeer=new Peer(code,{config:MP_ICE,debug:1});mpRole='host';mpPeer.on('open',id=>{mpRoom=id;mpPlayers=[{id,name:mpName,car:sel.car,grid:0}];mpShowLobby();mpLobbyStatus('Do\'stlaringizga '+id+' kodini yuboring')});mpPeer.on('connection',c=>{mpLobbyStatus('Ulanish so\'rovi keldi…');mpSetupConn(c,true)});mpPeer.on('error',e=>{if(e.type==='unavailable-id'){try{mpPeer.destroy()}catch(_){};mpRole='';setTimeout(mpCreateHost,200)}else mpStatus('Xona xatosi: '+(e.type||e.message))})}
@@ -1751,7 +1775,7 @@ if(window.Peer){/* PeerJS loaded */}else{setTimeout(()=>mpStatus('PeerJS yuklanm
 const _physMP=phys;phys=function(c,dt,a,b,d){if(MP&&c.remote){c.vx=Math.sin(c.yaw)*c.vF;c.vz=Math.cos(c.yaw)*c.vF;const lp=c.laps,tt0=c.total;locate(c);c.laps=lp;c.total=tt0;return}return _physMP(c,dt,a,b,d)};
 const _arMP=autoRecover;autoRecover=function(c,dt){if(MP&&c.remote)return;return _arMP(c,dt)};
 requestAnimationFrame(mpNetLoop);requestAnimationFrame(mpRenderRemote);requestAnimationFrame(mpProjLoop);
-const GAME_VER='V38'; /* har yangi versiyada faqat shu qatorni va yuqoridagi verTag matnini o'zgartiring */
+const GAME_VER='V39'; /* har yangi versiyada faqat shu qatorni va yuqoridagi verTag matnini o'zgartiring */
 setInterval(()=>{try{if(MP&&mpStarted){const vt=document.getElementById('verTag');vt.textContent=GAME_VER+' · paket:'+mpTest.packets+' · raqib:'+mpRemote.size+' · mashina:'+cars.length}}catch(_){}},700);try{const vt=document.getElementById('verTag');vt.textContent+=' · MP kodi ✓';window.addEventListener('load',()=>{vt.textContent+=typeof Peer!=='undefined'?' · PeerJS ✓'+(window.__turnOK?' · TURN ✓':''):' · PeerJS ✗'})}catch(_){}
 
 </script>
@@ -1879,7 +1903,7 @@ for(let i=0;i<6;i++){const d=document.createElement('div');d.className='sl';d.in
 window.slShow=function(){slOn=true;root.classList.add('on');E('menu').style.visibility='hidden';E('mset').style.visibility='hidden';slRender()};
 window.slHide=function(){if(!slOn&&!root.classList.contains('on'))return;slOn=false;root.classList.remove('on');E('menu').style.visibility='';E('mset').style.visibility='';slCars.forEach(c=>c&&scene.remove(c.g));slCars=[];if(typeof pv!=='undefined'&&pv)pv.visible=true;try{ren.setScissorTest(false);ren.setViewport(0,0,innerWidth,innerHeight)}catch(_){}};
 function slRender(){if(!slOn)return;const me=mpPlayers.find(p=>p.id===mpMyId()),host=mpRole==='host';
-root.querySelectorAll('.sl').forEach((el,i)=>{const p=mpPlayers[i];el.classList.toggle('full',!!p);el.querySelector('.sn').textContent=p?p.name+(i===0?' ★':''):'';const tk=el.querySelector('.tk');tk.style.display=p?'flex':'none';tk.classList.toggle('on',!!(p&&p.rdy));el.querySelector('.ca').style.display=p&&p.id===mpMyId()?'flex':'none';
+root.querySelectorAll('.sl').forEach((el,i)=>{const p=mpPlayers[i];el.classList.toggle('full',!!p);el.querySelector('.sn').innerHTML=p?'<b>'+mpEsc(p.name)+(i===0?' ★':'')+'</b><small>'+mpEsc((CARS[p.car]||{}).name||'')+'</small>':'';const tk=el.querySelector('.tk');tk.style.display=p?'flex':'none';tk.classList.toggle('on',!!(p&&p.rdy));el.querySelector('.ca').style.display=p&&p.id===mpMyId()?'flex':'none';
  let c=slCars[i];if(!p){if(c)scene.remove(c.g);slCars[i]=null;return}
  if(!c||c.car!==p.car){if(c)scene.remove(c.g);slCars[i]=null;const sp=CARS[p.car],ok=sp.id==='g80'?bmwReady:CAR_TPL[sp.id];if(ok){const g=cloneCar(sp);if(g){g.position.set(i*12-30,0,40);scene.add(g);slCars[i]={g,car:p.car}}}else{try{ensureCar(sp)}catch(_){}setTimeout(slRender,1500)}}});
 E('slCode').textContent='XONA '+mpRoom;const rb=E('slReady');rb.textContent=me&&me.rdy?'✓ TAYYOR':'TAYYOR';rb.classList.toggle('on',!!(me&&me.rdy));const sb=E('slStart');sb.style.display=host?'block':'none';sb.disabled=!(mpPlayers.length>1&&mpPlayers.every(p=>p.rdy))}
@@ -1892,6 +1916,116 @@ E('mpStart').onclick=()=>{if(mpRole==='host')slShow()};
 E('slReady').onclick=()=>{const me=mpPlayers.find(p=>p.id===mpMyId());if(!me)return;me.rdy=!me.rdy;if(mpRole==='host')mpBroadcast(mpHostSnapshot());else mpSend(mpHostConn,{t:'rdy',v:me.rdy});slRender()};
 E('slStart').onclick=()=>{if(mpRole==='host'&&mpPlayers.length>1&&mpPlayers.every(p=>p.rdy))mpHostStart()};
 E('slBack').onclick=()=>{mpClean();mpClose();showScr('scHome')};
-E('mpJoinGo').textContent='KEYINGI ▶'})();
+E('mpJoinGo').textContent='KEYINGI ▶';
+E('mpJoin').addEventListener('click',()=>E('mpHome').classList.add('joinMode'));
+E('mpBack').addEventListener('click',e=>{const h=E('mpHome');if(!h.hidden&&h.classList.contains('joinMode')){e.stopImmediatePropagation();h.classList.remove('joinMode')}},true);
+const _op=mpOpen;mpOpen=function(){_op();E('mpHome').classList.remove('joinMode')}})();
+</script>
+<script>
+(function(){const E=id=>document.getElementById(id),root=E('mpSlots');
+const ch=document.createElement('div');ch.id='slChat';ch.innerHTML='<button>😂</button><button>👍</button><button>🔥</button><button>😎</button><input id="slTxt" maxlength="60" placeholder="Xabar…"><button id="slSend">➤</button>';root.appendChild(ch);
+const lg=document.createElement('div');lg.id='slLog';root.appendChild(lg);let tm=0;
+window.chatRecv=function(m){const t=(m.name||'?')+': '+m.txt;lg.textContent=t;clearTimeout(tm);tm=setTimeout(()=>lg.textContent='',5000);try{if(state!=='menu')toast(t)}catch(_){}};
+function send(txt){txt=String(txt||'').trim().slice(0,60);if(!txt||!MP)return;const m={t:'chat',id:mpMyId(),name:mpName||'Men',txt};chatRecv({name:'Men',txt});if(mpRole==='host')mpBroadcast(m);else mpSend(mpHostConn,m)}
+ch.querySelectorAll('button').forEach(b=>{if(b.id!=='slSend')b.onclick=()=>send(b.textContent)});
+E('slSend').onclick=()=>{const i=E('slTxt');send(i.value);i.value=''};E('slTxt').addEventListener('keydown',e=>{if(e.key==='Enter')E('slSend').click()});
+window.lapDone=function(c){try{const now=raceT,lt=now-(c.lapStart||0);c.lapStart=now;if(lt<8)return;const k='blur_best_'+c.sp.id;const b=+localStorage.getItem(k)||0;if(!b||lt<b){localStorage.setItem(k,lt);toast('⏱ YANGI REKORD '+fmt(lt))}else toast('⏱ '+fmt(lt)+' · eng yaxshi '+fmt(b))}catch(_){}};
+window.bestHtml=function(){try{const b=+localStorage.getItem('blur_best_'+P.sp.id)||0;return b?'<div class=lbl>ENG YAXSHI AYLANA · '+P.sp.name+': '+fmt(b)+'</div>':''}catch(_){return''}}})();
+</script>
+<script>
+/* ===== V39 · BOSQICH 1: kamera, sozlamalar, reset, teskari yo'nalish, pauza ===== */
+// ---- yangi sozlamalar (localStorage 'blurSet' ga saqlanadi)
+try{const s=JSON.parse(localStorage.getItem('blurSet')||'{}');if(typeof s.cam==='number')settings.cam=s.cam;if(s.sens)settings.sens=s.sens;if(typeof s.hap==='boolean')settings.hap=s.hap;if(typeof s.fps==='boolean')settings.fps=s.fps}catch(_){}
+if(typeof settings.cam!=='number')settings.cam=0;settings.sens=settings.sens||1;if(typeof settings.hap!=='boolean')settings.hap=true;settings.fps=!!settings.fps;
+function saveSet(){try{localStorage.setItem('blurSet',JSON.stringify({ctl:settings.ctl,cs:settings.cs,sg:settings.sg,snd:settings.snd,cam:settings.cam,sens:settings.sens,hap:settings.hap,fps:settings.fps}))}catch(_){}}
+
+// ---- vibratsiya (haptic): Android navigator.vibrate, iPhone uchun yashirin "switch" usuli
+const v39HapEl=(()=>{const l=document.createElement('label');l.setAttribute('aria-hidden','true');l.style.cssText='position:fixed;left:-120px;top:-120px;width:40px;height:40px;opacity:0;pointer-events:none;overflow:hidden';const i=document.createElement('input');i.type='checkbox';i.setAttribute('switch','');l.appendChild(i);document.body.appendChild(l);return l})();
+let v39HapT=0;
+function hapt(p){if(!settings.hap)return;const n=performance.now();if(n-v39HapT<90)return;v39HapT=n;try{if(navigator.vibrate){navigator.vibrate(p);return}v39HapEl.click()}catch(_){}}
+const v39HapMap={hit:[55],boom:[70,40,70],pick:[18],shield:[25],nitro:[35],fire:[22],zap:[45]};
+const _sfxV39=sfx;sfx=function(k){try{if(v39HapMap[k])hapt(v39HapMap[k])}catch(_){}return _sfxV39(k)};
+
+// ---- kamera: 0 orqadan, 4 kapot, 5 bamper, 1 yaqin, 3 yuqori, 2 salon
+const CAMORD=[0,4,5,1,3,2],CAMN={0:'ORQADAN',1:'YAQIN',2:'SALON',3:'YUQORI',4:'KAPOT',5:'BAMPER'};
+function camSaved(){return CAMN[settings.cam]?settings.cam:0}
+function camVis(){if(P&&P.m)P.m.visible=!(camMode==2||camMode==5)}
+function camSet(m,say){camMode=m;camVis();if(say){try{toast('KAMERA: '+CAMN[m])}catch(_){}}}
+function camNext(refresh){const i=Math.max(0,CAMORD.indexOf(camMode));camSet(CAMORD[(i+1)%CAMORD.length],true);settings.cam=camMode;saveSet();hapt([12]);if(refresh)showOv('pause')}
+function camFirstPerson(){
+  const T=P.sp.t,fx=Math.sin(P.yaw),fz=Math.cos(P.yaw),zf=T.zmax||T.L/2,H=T.H||1.3,gy=P.gy||0,sk=(shake*.25+(P.boost>0?.04:0))*.5;
+  let zz,yy,ly;
+  if(camMode==4){zz=zf*.72;yy=gy+H*.8+.14;ly=yy-.8}else{zz=zf-.08;yy=gy+.46;ly=yy-.15}
+  cam.position.set(P.x+fx*zz+(Math.random()-.5)*sk,yy+(Math.random()-.5)*sk,P.z+fz*zz+(Math.random()-.5)*sk);
+  cam.lookAt(P.x+fx*45,ly,P.z+fz*45);
+}
+$('cm').onclick=()=>camNext(false);
+
+// ---- rul sezgirligi (rul rejimida burchakni kuchaytiradi; tugmalarda burilish tezligi phys ichida)
+function wheelSet(){inp.s=clamp(wheelAng*(settings.sens||1)/.85,-1,1);const w=$('wheel');if(w)w.firstElementChild.style.transform='rotate('+(wheelAng*180/Math.PI).toFixed(1)+'deg)'}
+
+// ---- trassaga qaytarish (reset) tugmasi
+let v39RsT=0;
+function resetNow(){if(!P||state!='race')return;const n=performance.now();if(n-v39RsT<2500)return;v39RsT=n;try{resetCar(P,10)}catch(e){console.error(e);return}hapt([40,30,40]);try{toast('TRASSAGA QAYTARILDI')}catch(_){}}
+(function(){const hr=$('hr'),pz=$('pz');if(!hr||!pz)return;const b=document.createElement('div');b.className='rb';b.id='rs';b.textContent='⤴';hr.insertBefore(b,pz);b.onclick=resetNow})();
+addEventListener('keydown',e=>{if(e.repeat||state=='menu')return;const t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;if(e.code=='KeyC')camNext(false);else if(e.code=='KeyR')resetNow()});
+
+// ---- FPS ko'rsatkichi
+const v39Fps=document.createElement('div');v39Fps.id='fpsBox';document.body.appendChild(v39Fps);
+let v39F=0,v39T=performance.now();
+(function fl(){requestAnimationFrame(fl);v39F++;const n=performance.now();if(n-v39T>=500){const f=Math.round(v39F*1000/(n-v39T));v39F=0;v39T=n;if(settings.fps){v39Fps.style.display='block';v39Fps.textContent=f+' FPS';v39Fps.style.color=f>=50?'#7dff9a':f>=30?'#ffd23d':'#ff5c7a'}else v39Fps.style.display='none'}})();
+
+// ---- teskari yo'nalish ogohlantirishi
+let v39Wt=0,v39Won=false,v39Wlast=0;
+const v39Ww=document.createElement('div');v39Ww.id='wrongWay';v39Ww.innerHTML='<b>⚠ TESKARI YO\'NALISH</b><small>Orqaga buriling yoki ⤴ tugmasi bilan trassaga qayting</small>';
+($('hud')||document.body).appendChild(v39Ww);
+function v39WrongTick(){
+  let wrong=false;
+  try{if(P&&state=='race'&&!paused&&S&&tx){const i=P.idx,dot=Math.sin(P.yaw)*tx[i]+Math.cos(P.yaw)*tz[i];wrong=dot<-.35&&Math.abs(P.vF)>2.5}}catch(_){}
+  v39Wt=wrong?Math.min(v39Wt+.1,2):Math.max(v39Wt-.2,0);
+  const on=v39Wt>=.7;
+  if(on!==v39Won){v39Won=on;v39Ww.classList.toggle('on',on)}
+  if(on){const n=performance.now();if(n-v39Wlast>2500){v39Wlast=n;hapt([70,60,70,60,90])}}
+}
+setInterval(v39WrongTick,100);
+
+// ---- pauza menyusi
+function askBtn(b,name,txt){if(b.dataset.ask==='1'){b.dataset.ask='';clearTimeout(b._t);window[name]();return}b.dataset.ask='1';b.dataset.old=b.textContent;b.textContent=txt+' (yana bosing)';b._t=setTimeout(()=>{b.dataset.ask='';b.textContent=b.dataset.old},3000)}
+function v39Online(){try{return !!(MP&&mpStarted)}catch(_){return false}}
+function v39PauseHTML(){
+  const rk=1+cars.filter(c=>c!==P&&c.total>P.total).length,lapN=Math.max(1,Math.min(LAPS,P.laps+1)),on=v39Online();
+  return '<h2>PAUZA</h2><div class="pinfo"><div><small>O\'RIN</small><b>'+rk+'/'+cars.length+'</b></div><div><small>AYLANA</small><b>'+lapN+'/'+LAPS+'</b></div><div><small>VAQT</small><b>'+fmt(raceT)+'</b></div><div><small>MASHINA</small><b>'+P.sp.name+'</b></div></div>'
+   +(on?'<div class="pnote">ONLINE POYGA DAVOM ETMOQDA — o\'yin to\'xtamaydi</div>':'')
+   +'<div class=grid><button class="pb pr" onclick="pause(false)">▶ Davom etish</button>'
+   +(on?'':'<button class=pb onclick="askBtn(this,\'restart\',\'Qaytadan boshlansinmi?\')">↻ Qaytadan boshlash</button>')
+   +'<button class=pb onclick="resetP()">⤴ Trassaga qaytish</button><button class=pb onclick="camNext(true)">🎥 Kamera: '+CAMN[camMode]+'</button><button class=pb onclick="showOv(\'set\')">⚙ Sozlamalar</button></div>'
+   +'<button class="pb dn" onclick="askBtn(this,\'toMenu\',\'Menyuga chiqilsinmi?\')">⏏ Menyuga chiqish</button>';
+}
+const _pauseV39=pause;
+pause=function(on){
+  if(state!='race'&&state!='count')return;
+  if(v39Online()){if(on)showOv('pause');else $('ov').style.display='none';return}   // online: poyga to'xtamaydi
+  return _pauseV39(on)};
+
+// ---- sozlamalarga yangi qatorlar
+function v39Row(card,before,label,opts,isSel,onPick){
+  const l=document.createElement('div');l.className='lbl';l.textContent=label;const r=document.createElement('div');r.className='row';
+  opts.forEach(o=>{const b=document.createElement('button');b.className='b'+(isSel(o[1])?' sel':'');b.textContent=o[0];b.onclick=()=>{onPick(o[1]);showOv('set')};r.appendChild(b)});
+  card.insertBefore(l,before);card.insertBefore(r,before)}
+function v39Settings(){
+  const card=$('ov').firstElementChild;if(!card)return;const back=card.lastElementChild;
+  v39Row(card,back,"Kamera (poyga boshida)",CAMORD.map(m=>[CAMN[m],m]),m=>camSaved()===m,m=>{settings.cam=m;saveSet();if(P&&(state=='race'||state=='count'))camSet(m,false)});
+  v39Row(card,back,'Rul sezgirligi',[['Past',.7],["O'rta",1],['Yuqori',1.3],['Juda yuqori',1.6]],v=>settings.sens==v,v=>{settings.sens=v;saveSet()});
+  v39Row(card,back,'Vibratsiya (haptic)',[['Yoqilgan',1],["O'chirilgan",0]],v=>!!settings.hap===!!v,v=>{settings.hap=!!v;saveSet();if(v)hapt([40])});
+  if(!navigator.vibrate){const n=document.createElement('div');n.className='lbl';n.style.opacity='.5';n.textContent="iPhone Safari'da vibratsiya cheklangan bo'lishi mumkin";card.insertBefore(n,back)}
+  v39Row(card,back,"FPS ko'rsatkichi",[['Yoqilgan',1],["O'chirilgan",0]],v=>!!settings.fps===!!v,v=>{settings.fps=!!v;saveSet()});
+}
+const _showOvV39=showOv;
+showOv=function(k){
+  if(k=='pause'&&P){showOvEl(v39PauseHTML());return}
+  const r=_showOvV39(k);
+  if(k=='set')try{v39Settings()}catch(e){console.error(e)}
+  return r};
+
 </script>
 </body></html>
