@@ -389,6 +389,7 @@ body.wheelOn #wheel{display:block}
 #raceEmo{position:fixed;left:calc(env(safe-area-inset-left,0px) + 8px);top:42%;display:none;flex-direction:column;gap:6px;z-index:55}#raceEmo button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(25,227,255,.6);background:rgba(0,0,0,.45);font-size:18px;padding:0}#mpSlots .kk{position:absolute;top:6px;left:6px;width:24px;height:24px;border-radius:50%;border:1px solid #ff5a6a;background:rgba(0,0,0,.5);color:#ff8a96;font:900 12px Arial;padding:0;display:none;pointer-events:auto}
 #bdBox{display:flex;gap:6px}#bdBox button{flex:1;padding:10px 4px;border-radius:10px;border:1px solid rgba(25,227,255,.5);background:rgba(25,227,255,.08);color:#fff;font:800 11px Arial}#bdBox button.on{background:#19e3ff;color:#06141a}#nitBtn{position:fixed;right:calc(env(safe-area-inset-right,0px) + 16px);bottom:170px;width:68px;height:68px;border-radius:50%;border:2px solid #19e3ff;color:#fff;font:900 11px Arial;letter-spacing:1px;z-index:56;display:none;touch-action:none;-webkit-tap-highlight-color:transparent}
 #dfHud{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:50%;transform:translateX(-50%);z-index:55;display:none;text-align:center;font:900 20px Arial;color:#ffd23d;text-shadow:0 2px 8px #000;pointer-events:none}#dfHud small{display:block;font:700 12px Arial;color:#fff}#spB{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:none;gap:8px;align-items:center;z-index:70;background:rgba(0,0,0,.55);padding:8px 12px;border-radius:14px;color:#fff;font:800 13px Arial}#spB button{width:40px;height:36px;border-radius:10px;border:1px solid #19e3ff;background:rgba(25,227,255,.15);color:#fff;font-size:18px;padding:0}
+#mapBox{display:flex;gap:6px}#mapBox button{flex:1;padding:10px 4px;border-radius:10px;border:1px solid rgba(25,227,255,.5);background:rgba(25,227,255,.08);color:#fff;font:800 11px Arial}#mapBox button.on{background:#19e3ff;color:#06141a}
 </style></head><body>
 <div id="fx"></div>
 <div id="hud">
@@ -440,6 +441,7 @@ body.wheelOn #wheel{display:block}
   <div class="stp"><div class="t"><i>5</i>REJIM</div><div id="rmBox"><button data-m="race" class="on">POYGA</button><button data-m="tt">VAQTGA QARSHI</button><button data-m="elim">ELIMINATION</button><button data-m="drift">DRIFT</button></div></div>
   <div class="stp"><div class="t"><i>6</i>MUHIT</div><div id="wxBox"><button data-w="day" class="on">☀ KUN</button><button data-w="eve">🌆 KECH</button><button data-w="fog">🌫 TUMAN</button><button data-w="rain">🌧 YOMG'IR</button></div></div>
   <div class="stp"><div class="t"><i>7</i>BOTLAR QIYINLIGI</div><div id="bdBox"><button data-d=".93">OSON</button><button data-d="1" class="on">O'RTA</button><button data-d="1.06">QIYIN</button></div></div>
+  <div class="stp"><div class="t"><i>8</i>XARITA</div><div id="mapBox"><button data-m="mega" class="on">MEGA ASFALT</button><button data-m="str">RACE TRACK</button></div></div>
   <button id="go">START RACE ▶</button>
    <div class="kbh">⌨ W/↑ gaz · S/↓ tormoz · A D / ← → burilish · SPACE bonus ishlatish · SHIFT orqaga tashlash · Q almashtirish · 1/2/3 tanlash · P pauza</div>
  </div>
@@ -2123,5 +2125,17 @@ const _r3=ren.render;ren.render=function(a,b){if(spOn&&b===cam){const t=tg(),c=t
 Object.keys(M).forEach(k=>{const i=new Image();i.onload=()=>{IM[k]=i;if(++n===8)apply()};i.src=M[k]});
 function apply(){const o=puDraw;puDraw=function(k,x,S){if(IM[k]){x.clearRect(0,0,S,S);x.drawImage(IM[k],0,0,S,S)}else o(k,x,S)};
 Object.keys(IM).forEach(k=>{try{const t=iconTex[k];if(t&&t.image){puDraw(k,t.image.getContext('2d'),t.image.width);t.needsUpdate=true}const c=document.createElement('canvas');c.width=c.height=96;puDraw(k,c.getContext('2d'),96);PU[k].img=c.toDataURL('image/png')}catch(_){}})}})();
+</script>
+<script>
+(function(){const E=id=>document.getElementById(id),MAPS={mega:{glb:'track.bin',phys:'track_phys.bin'},str:{glb:'track_str.bin',phys:'str_phys.bin'}};let want='mega',cur='mega',busy=false,pass=false;
+try{want=localStorage.getItem('blur_map')||'mega';if(!MAPS[want])want='mega'}catch(_){}
+const _mf=mpFetchBin;mpFetchBin=function(n){const m=MAPS[cur];return _mf(n==='track.bin'?m.glb:n==='track_phys.bin'?m.phys:n)};
+const bs=document.querySelectorAll('#mapBox button');const mark=()=>bs.forEach(x=>x.classList.toggle('on',x.dataset.m===want));mark();
+bs.forEach(b=>b.onclick=()=>{want=b.dataset.m;try{localStorage.setItem('blur_map',want)}catch(_){}mark()});
+async function sw(){busy=true;E('ld').style.display='flex';glbTrackReady=false;
+ if(glbTrack){scene.remove(glbTrack);glbTrack.traverse(o=>{if(o.isMesh){try{o.geometry.dispose();(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{if(m.map)m.map.dispose();m.dispose()})}catch(_){}}});glbTrack=null}
+ cur=want;await new Promise(r=>{loadUploadedTrack();const t=setInterval(()=>{if(glbTrackReady){clearInterval(t);r()}},150)});busy=false}
+E('go').addEventListener('click',e=>{if(MP||want===cur)return;if(pass){pass=false;return}e.stopImmediatePropagation();if(busy)return;sw().then(()=>{pass=true;E('go').click()})},true);
+const _op=mpOpen;mpOpen=function(){_op();if(cur!=='mega'&&!busy){const w=want;want='mega';sw().then(()=>{want=w})}}})();
 </script>
 </body></html>
