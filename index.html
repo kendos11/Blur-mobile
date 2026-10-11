@@ -451,6 +451,39 @@ body.wheelOn #wheel{display:block}
 #bcap{font:italic 700 15px Arial;color:#dcecff;text-shadow:0 2px 10px #000}
 .mpCard{padding:16px!important}#mpName,#mpCode{border-radius:14px!important}
 #ov .b,#ov .pb,.b{border-radius:12px!important}#ov .b.sel{background:linear-gradient(135deg,#19e3ff,#4a8bff)!important;color:#03121c!important;box-shadow:0 0 16px rgba(25,227,255,.5)}
+
+/* ===== UI v4: NFS-style garage, one-screen setup, circular dial ===== */
+#scCar.on{position:fixed!important;inset:0;display:block!important;max-width:none!important;width:auto!important;padding:0!important;overflow:hidden}
+#scCar .hdr{position:absolute;left:calc(env(safe-area-inset-left,0px) + 14px);top:calc(env(safe-area-inset-top,0px) + 8px);margin:0}#scCar .hdr h2{font-size:16px!important;color:#9fb8d8;text-shadow:none}
+#scCar .carRow{background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:0!important;display:block;height:0}
+#scCar .carMid{position:absolute;left:calc(env(safe-area-inset-left,0px) + 14px);top:50px;width:min(36vw,310px);text-align:left}
+#carName{font-size:22px!important;line-height:1.05;white-space:normal!important}#carSub{font-size:10px!important;margin-top:3px}
+#carPrev,#carNext{position:fixed;top:42%;z-index:3}#carPrev{left:40vw}#carNext{right:calc(env(safe-area-inset-right,0px) + 14px)}
+#scCar #carStats{position:absolute;left:calc(env(safe-area-inset-left,0px) + 14px);top:104px;width:min(36vw,310px);grid-template-columns:1fr 1fr;gap:5px 10px;padding:7px 9px!important}
+#scCar #tuneBox{position:absolute;left:calc(env(safe-area-inset-left,0px) + 14px);top:204px;width:min(36vw,310px);margin:0}#tuneBox button{padding:6px 4px!important;font-size:10px!important}
+#carChips{display:none!important}#carLoad{position:absolute;left:40vw;top:64px;font-size:11px}
+#scCar #carOk{position:absolute;right:calc(env(safe-area-inset-right,0px) + 14px);bottom:calc(env(safe-area-inset-bottom,0px) + 100px);width:min(34vw,250px);padding:11px!important;font-size:16px!important}
+#carStrip{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 6px);height:86px;display:flex;gap:8px;overflow-x:auto;padding:0 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}#carStrip::-webkit-scrollbar{display:none}
+.cc{flex:0 0 132px;scroll-snap-align:center;position:relative;border-radius:12px;padding:8px 10px;color:#fff;text-align:left;border:1px solid transparent;background:linear-gradient(160deg,rgba(26,44,86,.78),rgba(7,12,26,.9)) padding-box,linear-gradient(135deg,rgba(120,160,230,.4),rgba(120,140,255,.1)) border-box;transition:transform .2s}
+.cc b{display:block;font:900 12px/1.15 Arial;height:28px;overflow:hidden}.cc small{display:block;font:700 9px Arial;letter-spacing:1px;color:#8fb0d8;margin-top:3px}.cc .cl{position:absolute;left:10px;bottom:7px;font:900 11px Arial;color:#ffc15a}
+.cc.sel{transform:translateY(-6px);background:linear-gradient(160deg,rgba(30,70,140,.9),rgba(7,12,26,.95)) padding-box,linear-gradient(135deg,#19e3ff,#ff9a2a) border-box;box-shadow:0 0 18px rgba(25,227,255,.55)}.cc.lk{opacity:.72}.cc.lk b{color:#aab}
+/* setup: one screen, 3 columns */
+#scSP.on{position:fixed!important;inset:0;display:grid!important;grid-template-columns:repeat(3,1fr);grid-auto-rows:min-content;gap:7px 10px;align-content:start;padding:calc(env(safe-area-inset-top,0px) + 6px) calc(env(safe-area-inset-right,0px) + 14px) calc(env(safe-area-inset-bottom,0px) + 8px) calc(env(safe-area-inset-left,0px) + 14px)!important;max-height:none!important;overflow-y:auto;width:auto!important;max-width:none!important}
+#scSP .steps,#spR{display:contents!important}#scSP .hdr{grid-column:1/-1;margin:0}#scSP .hdr h2{font-size:18px!important}
+#scSP .stp{padding:6px 8px!important;min-width:0}#scSP .stp .t{font-size:8.5px;gap:6px;margin-bottom:4px}#scSP .stp .t i{width:16px;height:16px;font-size:9px;line-height:16px}
+#scSP .opt{padding:5px 8px!important;gap:8px}#scSP .opt .ic{width:26px;height:26px;font-size:14px}#scSP .opt{font-size:11px}#scSP .opt small{font-size:8px;letter-spacing:1px}
+#scSP .opt.lock{display:none!important}
+#rmBox button,#wxBox button,#bdBox button,#mapBox button{padding:6px 2px!important;font-size:8.5px!important;line-height:1.1}#lp button{padding:6px 0!important;font-size:12px!important}
+#scSP #go{grid-column:1/-1;padding:10px!important;font-size:16px!important}
+/* HUD: circular dial, items on top */
+#gauge{width:112px!important;height:112px!important;bottom:calc(env(safe-area-inset-bottom,0px) + 4px)!important}
+#gauge .gbg,#gauge .gf{stroke-width:8!important}
+#gauge .gnum{top:36px!important;bottom:auto!important}#gS{font-size:30px!important}
+#gG{left:50%!important;right:auto!important;transform:translateX(-50%);bottom:20px!important;width:22px!important;height:20px!important;font-size:12px!important;line-height:16px!important}
+#gN{left:50%!important;transform:translateX(-50%);bottom:4px!important;width:60px!important}
+#pw{bottom:auto!important;top:calc(env(safe-area-inset-top,0px) + 44px)!important;transform:none!important}
+.slot{width:38px!important;height:38px!important;font-size:17px!important;opacity:1!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+#bu.empty{display:none!important}
 </style></head><body>
 <div id="fx"></div>
 <div id="hud">
@@ -576,7 +609,7 @@ function fbm(x,y){let a=.5,s=0;for(let o=0;o<5;o++){s+=a*vn(x,y);x*=2;y*=2;a*=.5
 const pl=(a,t)=>{if(t<=a[0][0])return a[0][1];for(let i=1;i<a.length;i++)if(t<=a[i][0]){const q=(t-a[i-1][0])/(a[i][0]-a[i-1][0]||1);return a[i-1][1]+(a[i][1]-a[i-1][1])*q}return a[a.length-1][1]};
 const sg=(c,e)=>Math.sign(c)*Math.pow(Math.abs(c),e);
 const settings={q:/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)?1:2,snd:true};
-let bmwTemplate=null,bmwReady=false,bmwLoadError=false;
+let bmwTemplate=null,bmwReady=true,bmwLoadError=false;
 // ---------- renderer & scene
 const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.3,4500);
 const ren=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance",preserveDrawingBuffer:false});ren.outputEncoding=THREE.sRGBEncoding;ren.toneMapping=THREE.ACESFilmicToneMapping;ren.toneMappingExposure=1.05;ren.shadowMap.enabled=false;ren.shadowMap.type=THREE.BasicShadowMap;ren.domElement.id='c';document.body.prepend(ren.domElement);
@@ -602,8 +635,7 @@ const glow=(col,s)=>{const m=new THREE.Sprite(new THREE.SpriteMaterial({map:glow
 const TY={sedan:{L:4.8,W:1.9,H:1.43,hood:.93,trunk:.99,c0:.255,c1:.665,r0:.365,r1:.59,sq:4.4,m:1650,R:.36,tr:.215,tf:.80},coupe:{L:4.6,W:1.92,H:1.31,hood:.9,trunk:.96,c0:.3,c1:.66,r0:.4,r1:.57,sq:4.2,m:1550,R:.36,tr:.21,tf:.79},sport:{L:4.5,W:1.97,H:1.15,hood:.87,trunk:.97,c0:.35,c1:.69,r0:.46,r1:.6,sq:3.7,m:1450,R:.355,tr:.2,tf:.79},suv:{L:4.9,W:2,H:1.8,hood:1.17,trunk:1.32,c0:.17,c1:.7,r0:.2,r1:.66,sq:7,m:2250,R:.4,tr:.2,tf:.8},hatch:{L:4.4,W:1.85,H:1.46,hood:.93,trunk:1.12,c0:.2,c1:.72,r0:.26,r1:.68,sq:4.4,m:1450,R:.35,tr:.2,tf:.8},muscle:{L:4.9,W:1.95,H:1.34,hood:.98,trunk:1.02,c0:.37,c1:.72,r0:.45,r1:.62,sq:4.2,m:1800,R:.37,tr:.2,tf:.8},classic:{L:4.35,W:1.68,H:1.36,hood:.92,trunk:.97,c0:.2,c1:.72,r0:.28,r1:.64,sq:6.5,m:1200,R:.33,tr:.2,tf:.8}};
 const LBL={sedan:'SEDAN',coupe:'COUPÉ',sport:'SUPERCAR',suv:'SUV',hatch:'HOT HATCH',muscle:'MUSCLE',classic:'CLASSIC'},DRV={1:'RWD',.6:'AWD',0:'FWD'};
 const OV={'Porsche 911':{c0:.17,r0:.47,r1:.56,c1:.68,trunk:.93},'Audi RS6':{c0:.1,r0:.17,r1:.6,c1:.71,trunk:1.18,sq:4.4},'Dodge Charger':{c0:.24,r0:.34,r1:.6,c1:.68},'Mercedes G63':{hood:1.2,c0:.14,r0:.17,r1:.7,c1:.74,sq:8},'Range Rover':{c0:.14,r0:.18,r1:.68,c1:.72,sq:6},'Bugatti Chiron':{c0:.3,r0:.44,r1:.62,c1:.68},'Nissan GT-R':{c0:.25,r0:.38,r1:.6,c1:.68,trunk:1.0},'Toyota Supra':{c0:.24,r0:.42,r1:.55,c1:.68}};
-const CARS=[{id:'g80',name:'BMW M3 Competition G80',brand:'BMW',type:'sedan',t:{L:4.748,W:2.108,H:1.435,hood:.93,trunk:.99,c0:.255,c1:.665,r0:.365,r1:.59,sq:4.4,m:1705,R:.36,tr:.215,tf:.80},top:290/3.6,acc:3.9,grip:1.18,col:0xb9bec6,dr:.58,dn:'AWD',eng:'I6t',yr:2021,hp:510,ds:3.0},
-{id:'m3gtr',name:'BMW M3 GTR E46',brand:'BMW',type:'coupe',t:{L:4.643,W:1.915,H:1.461,m:1350,R:0.329,wb:2.730,zmin:-2.457,zmax:2.186},top:295/3.6,acc:4.2,grip:1.10,col:0xcfd3d8,dr:1,dn:'RWD',eng:'V8',yr:2001,hp:450,ds:4.0},
+const CARS=[{id:'m3gtr',name:'BMW M3 GTR E46',brand:'BMW',type:'coupe',t:{L:4.643,W:1.915,H:1.461,m:1350,R:0.329,wb:2.730,zmin:-2.457,zmax:2.186},top:295/3.6,acc:4.2,grip:1.10,col:0xcfd3d8,dr:1,dn:'RWD',eng:'V8',yr:2001,hp:450,ds:4.0},
 {id:'c6zr1',name:'Chevrolet Corvette C6 ZR1',brand:'Chevrolet',type:'sport',t:{L:4.473,W:2.097,H:1.141,m:1520,R:0.337,wb:2.685,zmin:-2.186,zmax:2.287},top:330/3.6,acc:3.4,grip:1.12,col:0x1e3c9a,dr:1,dn:'RWD',eng:'V8',yr:2012,hp:638,ds:6.2},
 {id:'zr1_2025',name:'Chevrolet Corvette ZR1',brand:'Chevrolet',type:'sport',t:{L:4.900,W:2.143,H:1.227,m:1695,R:0.347,wb:2.723,zmin:-2.411,zmax:2.489},top:375/3.6,acc:2.3,grip:1.30,col:0xe8b400,dr:1,dn:'RWD',eng:'V8f',yr:2025,hp:1064,ds:5.5},
 {id:'dtm',name:'Mercedes-AMG C-Coupe DTM',brand:'Mercedes',type:'coupe',t:{L:5.076,W:2.031,H:1.409,m:1110,R:0.359,wb:2.840,zmin:-2.718,zmax:2.358},top:300/3.6,acc:3.1,grip:1.38,col:0xe9edf0,dr:1,dn:'RWD',eng:'V8t',yr:2018,hp:610,ds:4.0},
@@ -1631,7 +1663,7 @@ async function prepareRaceCars(){
 // --- menyu: 3D ko'rinish (mashina tanlashda o'ngda panel, mashina chapda)
 function applyMenuView(id){
   const w=innerWidth,h=innerHeight,side=(id==='scCar'||id==='scBots');if(id==='scMP'){if(w>h)cam.setViewOffset(w,h,-w*.085,0,w,h);else cam.setViewOffset(w,h,w*.08,h*.2,w,h);cam.updateProjectionMatrix();return}
-  if(side&&w>h)cam.setViewOffset(w,h,w*.17,0,w,h);else if(side)cam.setViewOffset(w,h,0,h*.14,w,h);else cam.clearViewOffset();
+  if(side&&w>h)cam.setViewOffset(w,h,id==='scCar'?-w*.14:w*.17,0,w,h);else if(side)cam.setViewOffset(w,h,0,h*.14,w,h);else cam.clearViewOffset();
   cam.updateProjectionMatrix();
 }
 addEventListener('resize',()=>{if(state=='menu')applyMenuView(curScr)});
@@ -1677,7 +1709,7 @@ $('botRand').onclick=()=>{sel.bots=sel.bots.map(rndCar);ui()};
 $('botClear').onclick=()=>{sel.bots=[];ui()};
 $('botList').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;if(b.dataset.a==='r'){let n=rndCar(),t=0;while(n===sel.bots[i]&&t++<8)n=rndCar();sel.bots[i]=n}else sel.bots.splice(i,1);ui()});
 
-setTimeout(()=>{build('city');stripProceduralWorld();lightsMenu(true);ui();$('pc').style.display='none';$('nc').style.display='none';$('strip').style.display='none';$('cn').textContent='BMW M3 COMPETITION G80';$('cb').textContent='G80 • 510 HP • 290 KM/H';$('spec').textContent='3.0L I6 TURBO • 8AT • 0–100 KM/H 3.9s';loadBMW();loadUploadedTrack();requestAnimationFrame(tick)},50);
+setTimeout(()=>{build('city');stripProceduralWorld();lightsMenu(true);ui();$('pc').style.display='none';$('nc').style.display='none';$('strip').style.display='none';$('cn').textContent='BMW M3 COMPETITION G80';$('cb').textContent='G80 • 510 HP • 290 KM/H';$('spec').textContent='3.0L I6 TURBO • 8AT • 0–100 KM/H 3.9s';loadUploadedTrack();requestAnimationFrame(tick)},50);
 
 
 // ===== V32: yangi menyu, bonus sharlar, quvlovchi o'q, klaviatura/telefon rejimi =====
@@ -1949,7 +1981,7 @@ mpEl('mpBackG').onclick=()=>{mpClean();showScr('scHome');mpLobbyStatus('')};
 const _uiV36=ui;ui=function(){_uiV36();if(curScr==='scMP')try{mpGarageUI()}catch(e){console.error(e)}};
 </script><script>
 (function(){const T=[['bSP','Yakka poyga: mashina, trassa va botlarni tanlang'],['bMP','Do\'stlar bilan online poyga (2–6 kishi)'],['bSetT','Grafika, ovoz va boshqaruv sozlamalari']];let cur=0;const bc=document.getElementById('bcar'),cap=document.getElementById('bcap');
-function set(n){cur=Math.max(0,Math.min(T.length-1,n));T.forEach((t,i)=>{const e=document.getElementById(t[0]),d=i-cur;e.classList.toggle('act',d===0);e.style.transform='translateX('+(d*min())+'px) rotateY('+(-d*30)+'deg) scale('+(d?.78:1.08)+')';e.style.opacity=d?.62:1;e.style.zIndex=10-Math.abs(d)});cap.textContent=(window.tr?tr(T[cur][1]):T[cur][1])}
+function set(n){cur=Math.max(0,Math.min(T.length-1,n));T.forEach((t,i)=>{const e=document.getElementById(t[0]),d=i-cur;e.classList.toggle('act',d===0);e.style.transform='translateX('+(d*min())+'px) rotateY('+(-d*30)+'deg) scale('+(d?.78:1.08)+')';e.style.opacity=d?.62:1;e.style.zIndex=10-Math.abs(d)});cap.textContent=(window.trL?trL(T[cur][1]):T[cur][1])}
 function min(){return Math.min(innerWidth*.34,190)}
 bc.addEventListener('click',e=>{const t=e.target.closest('.bt');if(!t)return;const i=T.findIndex(x=>x[0]===t.id);if(i!==cur){e.stopPropagation();e.preventDefault();set(i)}},true);
 document.getElementById('bSetT').addEventListener('click',()=>{const m=document.getElementById('mset');if(m)m.click()});
@@ -2007,7 +2039,7 @@ function up(k){const c=CARS[sel.car],t=tn(c.id);if(t[k]>=5)return;const p=400*(t
 E('tuE').onclick=()=>up('e');E('tuG').onclick=()=>up('g');
 window.rewardRace=function(){window.lastReward='';try{const r=[...cars].sort((a,b)=>(a.fin&&b.fin?a.ft-b.ft:a.fin?-1:b.fin?1:b.total-a.total)),pos=r.indexOf(P)+1,n=r.length,m=150+(n-pos)*120+(pos==1?300:0),x=60+(n-pos)*25;sv.money+=m;sv.xp+=x;sv.races++;if(pos==1)sv.wins++;save();hud();window.lastReward='<div class=lbl style="color:#7dffb0">+'+m+' $ · +'+x+' XP · LV '+lvl()+'</div>'}catch(_){}};
 const _bh=window.bestHtml;window.bestHtml=function(){return (window.lastReward||'')+(_bh?_bh():'')};
-window.applyCode=function(){const v=((document.getElementById('cheat')||{}).value||'').trim().toLowerCase();if(v==='test'){sv.own=CARS.map(c=>c.id);save();lockUI();toast('✔ Hamma mashinalar ochildi')}else toast("Kod noto'g'ri")};
+window.__sv=sv;window.__price=price;window.applyCode=function(){const v=((document.getElementById('cheat')||{}).value||'').trim().toLowerCase();if(v==='test'){sv.own=CARS.map(c=>c.id);save();lockUI();toast('✔ Hamma mashinalar ochildi')}else toast("Kod noto'g'ri")};
 applyTune();const _ui=ui;ui=function(){_ui();lockUI()};lockUI()})();
 </script>
 <script>
@@ -2096,7 +2128,7 @@ document.addEventListener('pointerdown',()=>{try{if(typeof ac==='undefined'||!ac
 // loader percent, auto quality, thud
 const lb=document.querySelector('#ld .ldBar i'),lt=document.querySelector('#ld .ldTxt');let sp=0,sh0=0,aq=null,lst='';
 (function loop(){requestAnimationFrame(loop);try{
- if(E('ld').style.display==='none')sp=0;else{const p=10+(glbTrackReady?50:0)+(bmwReady?40:0);sp+=(p-sp)*.08;lb.style.animation='none';lb.style.width=sp+'%';lt.textContent=trL('JARAYONDA…')+' '+Math.round(sp)+'%'}
+ if(E('ld').style.display==='none')sp=0;else{const p=10+(glbTrackReady?50:0)+(bmwReady?40:0);sp+=(p-sp)*.08;lb.style.animation='none';lb.style.width=sp+'%';lt.textContent=(window.__ldM&&performance.now()-window.__ldT<2500)?window.__ldM:trL('JARAYONDA…')+' '+Math.round(sp)+'%'}
  mtick();if(state!==lst){lst=state;musicSet();if(state==='count')aq={n:0,t0:0,d:false}}
  if(shake>.5&&sh0<=.5&&state==='race')thud();sh0=shake;
  if(state==='race'&&aq&&!aq.d){const n=performance.now();if(!aq.t0)aq.t0=n;aq.n++;if(n-aq.t0>6000){aq.d=true;const f=aq.n*1000/(n-aq.t0);if(f<35&&settings.q>0){settings.q--;applyQ();try{localStorage.setItem('blur_q',settings.q)}catch(_){}toast('Grafika avtomatik pasaytirildi')}}}
@@ -2306,7 +2338,7 @@ let lp='',lk=0,lastRank=0,lastLap=-1,bst=false,ds=0,dOn=false,rT=0,pP=null;const
 (function loop(){requestAnimationFrame(loop);try{const race=state==='race'&&P;g.style.display=race?'block':'none';if(!race){pP=null;return}
  if(P!==pP){pP=P;lastRank=0;lastLap=-1;bst=false;ds=0;dOn=false}
  const sp=Math.hypot(P.vx,P.vz)*3.6,fr=Math.min(1,Math.abs(P.vF)/((P.sp&&P.sp.top||60)*1.45));
- E('gS').textContent=Math.round(Math.abs(P.vF)*3.6);const gf=E('gF');gf.style.strokeDasharray=(fr*100).toFixed(1)+' 100';gf.style.stroke=P.boost>0?'#7af0ff':fr>.85?'#ff5a5a':fr>.65?'#ffb347':'#19e3ff';
+ E('gS').textContent=Math.round(Math.abs(P.vF)*3.6);const gf=E('gF');gf.style.strokeDasharray=(fr*75).toFixed(1)+' 100';gf.style.stroke=P.boost>0?'#7af0ff':fr>.85?'#ff5a5a':fr>.65?'#ffb347':'#19e3ff';
  E('gG').textContent=E('gr')?E('gr').textContent:'N';g.querySelector('#gN i').style.width=(window.__nit||0)+'%';
  // position pop + banners
  const t=pos?pos.textContent:'';if(t!==lp){lp=t;if(pos){pos.classList.remove('pump');void pos.offsetWidth;pos.classList.add('pump')}}
@@ -2320,5 +2352,22 @@ let lp='',lk=0,lastRank=0,lastLap=-1,bst=false,ds=0,dOn=false,rT=0,pP=null;const
 <script>
 (function(){const E=id=>document.getElementById(id),sp=E('scSP'),r=document.createElement('div');r.id='spR';
 [...sp.children].filter(e=>e.classList.contains('stp')&&e.parentElement===sp).forEach(e=>r.appendChild(e));sp.insertBefore(r,E('go'))})();
+</script>
+<script>
+(function(){const E=id=>document.getElementById(id);
+// dial: circular 270deg gauge
+const g=E('gauge');g.innerHTML='<svg viewBox="0 0 120 120"><circle class="gbg" cx="60" cy="60" r="50" pathLength="100" stroke-dasharray="75 100" transform="rotate(135 60 60)"/><circle id="gF" class="gf" cx="60" cy="60" r="50" pathLength="100" stroke-dasharray="0 100" transform="rotate(135 60 60)"/></svg><div class="gnum"><b id="gS">0</b><small>KM/H</small></div><div id="gG">N</div><div id="gN"><i></i></div>';
+// car strip
+const sc=E('scCar'),st=document.createElement('div');st.id='carStrip';sc.appendChild(st);
+function strip(){const sv=window.__sv;st.innerHTML='';CARS.forEach((c,i)=>{const own=!sv||sv.own.includes(c.id),d=document.createElement('div');d.className='cc'+(i===sel.car?' sel':'')+(own?'':' lk');
+ d.innerHTML='<b>'+c.name+'</b><small>'+c.hp+' HP · '+Math.round(c.top*3.6)+' KM/H</small>'+(own?'':'<span class="cl">🔒 '+(window.__price?__price(i).toLocaleString():'')+' $</span>');
+ d.onclick=()=>{if(sel.car===i)return;sel.car=i;showPv();ui()};st.appendChild(d)});
+ const a=st.querySelector('.sel');if(a)st.scrollTo({left:a.offsetLeft-st.clientWidth/2+a.clientWidth/2,behavior:'smooth'})}
+const _ui=ui;ui=function(){_ui();try{strip()}catch(_){}};strip();
+})();
+</script>
+<script>
+(function(){const ld=document.getElementById('ld'),lt=ld.querySelector('.ldTxt');
+Object.defineProperty(ld,'textContent',{configurable:true,get(){return lt.textContent},set(v){window.__ldM=v;window.__ldT=performance.now();lt.textContent=v}})})();
 </script>
 </body></html>
