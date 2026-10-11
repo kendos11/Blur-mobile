@@ -424,6 +424,33 @@ body.wheelOn #wheel{display:block}
 #dftBtn{left:auto!important;right:calc(env(safe-area-inset-right,0px) + 31vw)!important;box-shadow:0 0 18px rgba(255,154,42,.5)}
 #mm{border-radius:14px;border:2px solid rgba(25,227,255,.6);background:rgba(6,12,24,.6)!important;box-shadow:0 0 14px rgba(25,227,255,.3)}
 #hr .rb{border-radius:50%!important;background:rgba(8,14,30,.7)!important;border:1.5px solid rgba(25,227,255,.7)!important;box-shadow:0 0 12px rgba(25,227,255,.3)}
+
+/* ===== UI v3: design system ===== */
+@keyframes shine{0%{transform:translateX(-130%) skewX(-20deg)}55%,100%{transform:translateX(130%) skewX(-20deg)}}
+@keyframes sheen{0%{background-position:160% 0}60%,100%{background-position:-60% 0}}
+@keyframes aur{0%{opacity:.75;transform:scale(1)}100%{opacity:1;transform:scale(1.08)}}
+#menu::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(55% 50% at 15% 105%,rgba(25,120,255,.38),transparent),radial-gradient(50% 45% at 95% -5%,rgba(255,138,42,.22),transparent);animation:aur 8s ease-in-out infinite alternate}
+.stp,.opt,.tc,#carStats,.carRow,.botBar,#botList>*,.mpCard,#ov>div{border:1px solid transparent!important;background:linear-gradient(160deg,rgba(26,44,86,.66),rgba(7,12,26,.82)) padding-box,linear-gradient(135deg,rgba(25,227,255,.75),rgba(120,140,255,.18) 45%,rgba(255,154,42,.5)) border-box!important;box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.1)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px!important}
+.hdr h2{font:900 italic 26px "Avenir Next Condensed","Arial Narrow",Arial,sans-serif!important;letter-spacing:3px;color:#fff;text-shadow:0 0 18px rgba(25,227,255,.5)}
+.back,.arrow{width:42px;height:42px;border-radius:50%!important;border:1.5px solid rgba(25,227,255,.75)!important;background:rgba(8,14,30,.7)!important;color:#fff;box-shadow:0 0 14px rgba(25,227,255,.3)}
+.stp{padding:10px 12px!important}.stp .t{display:flex;align-items:center;gap:8px;font:900 11px Arial;letter-spacing:2.5px;color:#9fb8d8}
+.stp .t i{font-style:normal;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#19e3ff,#3a7bff);color:#041018;font:900 12px/22px Arial;text-align:center;box-shadow:0 0 12px rgba(25,227,255,.6)}
+.opt{display:flex;align-items:center;gap:10px;color:#fff;padding:10px 12px!important;text-align:left}.opt .ic{width:34px;height:34px;border-radius:10px;background:rgba(25,227,255,.14);display:flex;align-items:center;justify-content:center;font-size:18px}.opt small{display:block;font:700 9px Arial;letter-spacing:2px;color:#7f98b8}.opt.lock{opacity:.5}
+#rmBox button,#wxBox button,#bdBox button,#mapBox button{border-radius:12px!important;background:rgba(10,18,36,.7)!important;border:1px solid rgba(120,160,230,.3)!important;color:#c9d8f0!important;transition:all .2s}
+#rmBox button.on,#wxBox button.on,#bdBox button.on,#mapBox button.on{background:linear-gradient(135deg,#19e3ff,#4a8bff)!important;color:#03121c!important;border-color:transparent!important;box-shadow:0 0 18px rgba(25,227,255,.55)}
+#go,#carOk,#mpStart{position:relative;overflow:hidden;border:none!important;border-radius:16px!important;background:linear-gradient(135deg,#ff8a2a,#ffc15a)!important;color:#1a0c00!important;font:900 italic 19px "Avenir Next Condensed","Arial Narrow",Arial,sans-serif!important;letter-spacing:3px;box-shadow:0 8px 28px rgba(255,138,42,.45),inset 0 1px 0 rgba(255,255,255,.55)!important;padding:14px!important}
+#go::after,#carOk::after,#mpStart::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 3.2s infinite}
+#go:active,#carOk:active,#mpStart:active{transform:scale(.97)}
+#scSP.on{display:grid!important;grid-template-columns:1fr 1fr;gap:10px 14px;align-content:start;max-height:calc(100vh - 16px);overflow-y:auto}#scSP .hdr,#scSP #go{grid-column:1/-1}#scSP .steps{grid-column:1;display:flex;flex-direction:column;gap:10px}#spR{grid-column:2;display:flex;flex-direction:column;gap:10px}#scSP .kbh{display:none}
+#carName{font:900 italic 30px "Avenir Next Condensed","Arial Narrow",Arial,sans-serif!important;letter-spacing:2px;color:#fff;text-shadow:0 0 20px rgba(25,227,255,.55)}#carSub{color:#8fb0d8;letter-spacing:2px}
+#bcar .bt{border:1px solid transparent!important;background:linear-gradient(160deg,rgba(40,110,255,.55),rgba(8,30,120,.7)) padding-box,linear-gradient(135deg,#19e3ff,rgba(120,140,255,.3) 50%,#ff9a2a) border-box!important;border-radius:20px!important}
+#bcar .bt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.3) 50%,transparent 65%);background-size:260% 100%;animation:sheen 4.2s infinite}
+#bcar .ci{background:radial-gradient(circle at 35% 30%,#b8fbff,#19e3ff 55%,#0a9fe0)!important;box-shadow:0 0 34px rgba(25,227,255,.8),inset 0 -6px 14px rgba(0,60,120,.35)!important}
+.bhd b{background:linear-gradient(180deg,#fff,#7dd6ff);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:28px;filter:drop-shadow(0 0 10px rgba(25,227,255,.6))}
+.bhd em{padding:5px 12px;border-radius:999px;background:rgba(8,14,30,.7);border:1px solid rgba(255,174,61,.6);color:#ffb347;font:900 12px Arial;letter-spacing:1px}
+#bcap{font:italic 700 15px Arial;color:#dcecff;text-shadow:0 2px 10px #000}
+.mpCard{padding:16px!important}#mpName,#mpCode{border-radius:14px!important}
+#ov .b,#ov .pb,.b{border-radius:12px!important}#ov .b.sel{background:linear-gradient(135deg,#19e3ff,#4a8bff)!important;color:#03121c!important;box-shadow:0 0 16px rgba(25,227,255,.5)}
 </style></head><body>
 <div id="fx"></div>
 <div id="hud">
@@ -458,9 +485,9 @@ body.wheelOn #wheel{display:block}
  <div class="scr on" id="scHome">
   <div class="bhd"><i>👤</i><b>blur</b><span class="ln"></span><em>MOBILE</em></div>
   <div id="bcar">
-   <div class="bt" id="bSP"><div class="tn">singleplayer</div><div class="ci">🏁</div></div>
-   <div class="bt" id="bMP"><div class="tn">multiplayer</div><div class="ci">👥</div></div>
-   <div class="bt" id="bSetT"><div class="tn">sozlamalar</div><div class="ci">⚙</div></div>
+   <div class="bt" id="bSP"><div class="tn">singleplayer</div><div class="ci"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="none" stroke="#06141f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h12l-2.5 3.5L18 12H6" fill="#06141f"/><path d="M9 5v7M12 5v7M15 5v7" stroke="#19e3ff" stroke-width="1.2"/></svg></div></div>
+   <div class="bt" id="bMP"><div class="tn">multiplayer</div><div class="ci"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="none" stroke="#06141f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2" fill="#06141f"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M16 14.2c3 0 5 1.8 5 5.2"/></svg></div></div>
+   <div class="bt" id="bSetT"><div class="tn">sozlamalar</div><div class="ci"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="none" stroke="#06141f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8" stroke-width="3" stroke-dasharray="3.1 3.1"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.8" fill="#06141f"/></svg></div></div>
   </div>
   <div id="bcap"></div>
  </div>
@@ -2289,5 +2316,9 @@ let lp='',lk=0,lastRank=0,lastLap=-1,bst=false,ds=0,dOn=false,rT=0,pP=null;const
  const b=P.boost>.1;if(b&&!bst&&raceT>3)banner('NITRO','#19e3ff');bst=b;
  const slip=Math.abs(P.vS),dr=sp/3.6>10&&(slip>3||P.drifting);if(dr){ds+=slip*(sp/3.6)*.016*.04;dOn=true}else if(dOn){dOn=false;if(ds>25)banner('DRIFT  +'+Math.round(ds),'#ffb347');ds=0}
 }catch(_){}})()})();
+</script>
+<script>
+(function(){const E=id=>document.getElementById(id),sp=E('scSP'),r=document.createElement('div');r.id='spR';
+[...sp.children].filter(e=>e.classList.contains('stp')&&e.parentElement===sp).forEach(e=>r.appendChild(e));sp.insertBefore(r,E('go'))})();
 </script>
 </body></html>
