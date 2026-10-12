@@ -529,6 +529,35 @@ body.wheelOn #wheel{display:block}
 #gauge{left:auto!important;transform:none!important;right:calc(env(safe-area-inset-right,0px) + 164px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 74px)!important;width:88px!important;height:88px!important}
 #gS{font-size:24px!important}#gauge .gnum{top:28px!important}#gauge small{font-size:7px!important}
 #steerBtns[style*="none"]{display:none!important}#wheel[style*="block"],#wheel[style*="flex"]{z-index:4}
+
+/* ===== UI v6: multiplayer + setup renewal ===== */
+#mpOverlay{background:rgba(3,5,9,.8)!important}
+#mpOverlay .mpCard{width:min(560px,94vw)!important;max-width:560px!important;min-height:0!important;height:auto!important;padding:14px 16px 16px!important;border-left:4px solid #ffb020!important;margin:auto}
+.mpHead{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.mpHead b{font:900 17px "Avenir Next Condensed","Arial Narrow",Arial,sans-serif!important;font-style:normal!important;letter-spacing:3px!important;color:#fff!important}
+.mpHead small{display:block;font:700 9px Arial!important;letter-spacing:2px!important;color:#9fb0c8!important}
+#mpBack{width:32px;height:32px;border-radius:4px!important;background:none!important;border:1.5px solid rgba(255,255,255,.6)!important;color:#fff!important;box-shadow:none!important}
+#mpHome label{display:block;font:800 9px Arial!important;letter-spacing:2px;color:#c5d2e6!important;margin:6px 0 4px}
+#mpName,#mpCode{height:42px!important;border-radius:4px!important;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.3)!important;color:#fff!important;box-shadow:none!important;font:700 16px Arial!important;text-align:left!important;padding:0 12px!important}
+#mpCode{letter-spacing:6px;font-size:20px!important;text-align:center!important}
+#mpHome .mpBtns{gap:10px}
+#mpHome .mpBtns button{height:auto!important;min-height:92px;border-radius:4px!important;background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.28)!important;border-bottom:3px solid #ffb020!important;box-shadow:none!important;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;padding:12px 14px!important;color:#fff!important;text-align:left}
+.mpBtns .mi{font:300 26px/1 Arial;color:#ffb020;margin-bottom:4px}.mpBtns b{font:900 15px Arial;letter-spacing:2px}.mpBtns small{font:600 10px Arial;color:#9fb0c8;letter-spacing:.5px}
+#mpJoinGo{height:44px!important;border-radius:4px!important;background:#ffb020!important;color:#06090e!important;border:none!important;box-shadow:none!important;font:900 14px Arial!important;letter-spacing:2px}
+#mpStatus{color:#ffb020!important}
+#mpSlots .sl{background:rgba(6,9,14,.55)!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:4px!important;box-shadow:none!important}
+#mpSlots .sl.full{border-color:rgba(255,255,255,.55)!important;border-bottom:3px solid #ffb020!important}
+#mpSlots .tk{border-radius:3px!important;width:18px!important;height:18px!important}
+#slCode{font:900 15px Arial!important;letter-spacing:6px!important;text-shadow:none!important;color:#fff!important}
+#slBack{border-radius:4px!important;border:1.5px solid rgba(255,255,255,.6)!important;background:rgba(6,9,14,.6)!important;box-shadow:none!important}
+#slBtns button,#slChat button,#slChat input{border-radius:4px!important;background:rgba(6,9,14,.7)!important;border:1px solid rgba(255,255,255,.35)!important;color:#fff!important;box-shadow:none!important;font:800 11px Arial!important;letter-spacing:1px;padding:0 10px!important;height:34px!important}
+#slReady.on{background:#fff!important;color:#06090e!important}#slStart{background:#ffb020!important;color:#06090e!important;border:none!important}#slBtns{gap:6px}
+#slChat{max-width:none!important;gap:4px}#slChat input{min-width:90px;width:110px;flex:none}#slChat button{width:30px!important;padding:0!important}
+#mpSlots .ca button{border-radius:4px!important;border:1px solid rgba(255,255,255,.5)!important}
+#scSP .stp .t{color:#c5d2e6!important}#scSP .hdr h2{font-size:15px!important;font-style:normal!important;letter-spacing:3px!important;color:#fff!important;text-shadow:none!important}
+#scSP .opt{height:34px!important;padding:0 10px!important;white-space:nowrap;overflow:hidden}#scSP .opt .ic{display:none!important}#optCarT{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}
+#scSP .stp{padding:5px 8px 6px!important}
+#rmBox button,#wxBox button,#bdBox button,#mapBox button,#lp button{height:30px!important;padding:0 2px!important;font-size:8.5px!important}
 </style></head><body>
 <div id="fx"></div>
 <div id="hud">
@@ -552,7 +581,7 @@ body.wheelOn #wheel{display:block}
   <div class="mpHead"><button id="mpBack">‹</button><div><b>BLUR MOBILE</b><small>ONLINE MULTIPLAYER · 2–6</small></div></div>
   <div id="mpHome">
    <label>ISMINGIZ</label><input id="mpName" maxlength="16" placeholder="Murod">
-   <div class="mpBtns"><button id="mpCreate">XONA OCHISH</button><button id="mpJoin">XONAGA KIRISH</button></div>
+   <div class="mpBtns"><button id="mpCreate"><span class="mi">＋</span><b>XONA OCHISH</b><small>Do'stlar uchun yangi xona</small></button><button id="mpJoin"><span class="mi">→</span><b>XONAGA KIRISH</b><small>4 xonali kod bilan qo'shilish</small></button></div>
    <div class="mpJoinRow"><input id="mpCode" maxlength="4" inputmode="numeric" placeholder="4 xonali kod"><button id="mpJoinGo">KIRISH</button></div>
    <div id="mpStatus"></div>
   </div>
@@ -2237,7 +2266,7 @@ const _bh=window.bestHtml;window.bestHtml=function(){let t='';if(dMode){let b=+l
  return t+(_bh?_bh():'')};
 // ---- 5.4 team toggle (host)
 const tb=document.createElement('button');E('slBtns').insertBefore(tb,E('slBtns').firstChild);tb.onclick=()=>{window.__team=!window.__team;mpBroadcast(mpHostSnapshot());mpRenderLobby()};
-const _r4=mpRenderLobby;mpRenderLobby=function(){_r4();tb.textContent=window.__team?'JAMOA: YOQ':'JAMOA: YOQ EMAS';document.querySelectorAll('#mpSlots .sl').forEach((el,i)=>{const p=mpPlayers[i];if(window.__team&&p){const c=i%2?'#33ccff':'#ffcc33';el.style.borderColor=c;const sm=el.querySelector('.sn small');if(sm)sm.textContent+=' · '+(i%2?'OMEGA':'ALPHA')}else el.style.borderColor=''})};
+const _r4=mpRenderLobby;mpRenderLobby=function(){_r4();tb.textContent=window.__team?'JAMOA ✓':'JAMOA';document.querySelectorAll('#mpSlots .sl').forEach((el,i)=>{const p=mpPlayers[i];if(window.__team&&p){const c=i%2?'#33ccff':'#ffcc33';el.style.borderColor=c;const sm=el.querySelector('.sn small');if(sm)sm.textContent+=' · '+(i%2?'OMEGA':'ALPHA')}else el.style.borderColor=''})};
 // ---- 2.5 spectate
 let spOn=false,spI=0,spDone=false;const sb=document.createElement('div');sb.id='spB';sb.innerHTML='<button>‹</button><span>👁</span><button>›</button>';document.body.appendChild(sb);const sbt=sb.querySelectorAll('button'),sbl=sb.querySelector('span');
 const tg=()=>cars.filter(c=>c!==P&&!c.fin);sbt[0].onclick=()=>{spI=(spI+tg().length-1)%Math.max(1,tg().length)};sbt[1].onclick=()=>{spI=(spI+1)%Math.max(1,tg().length)};
@@ -2417,5 +2446,8 @@ Object.defineProperty(ld,'textContent',{configurable:true,get(){return lt.textCo
 </script>
 <script>
 (function(){(function loop(){requestAnimationFrame(loop);try{ren.toneMappingExposure=(state==='menu')?.72:1}catch(_){}})()})();
+</script>
+<script>
+(function(){const e=document.getElementById('scSP');if(e)new MutationObserver(()=>{if(e.classList.contains('on'))e.scrollTop=0}).observe(e,{attributes:true,attributeFilter:['class']})})();
 </script>
 </body></html>
