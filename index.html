@@ -589,6 +589,26 @@ body.wheelOn #wheel{display:block}
 #scCar #carStats>*:nth-child(n+5){display:none!important}
 #carStrip{height:54px!important}.cc{flex:0 0 120px!important;padding:5px 8px!important}.cc b{height:auto!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px!important}.cc small{margin-top:1px!important}
 #scCar #carOk{width:150px!important;bottom:calc(env(safe-area-inset-bottom,0px) + 66px)!important;padding:8px!important}
+
+/* ===== motion: transitions, stagger, ripple, shine ===== */
+@keyframes slideF{0%{opacity:0;transform:translateX(44px)}100%{opacity:1;transform:none}}
+@keyframes slideB{0%{opacity:0;transform:translateX(-44px)}100%{opacity:1;transform:none}}
+@keyframes rise{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:none}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes kb{0%{transform:scale(1)}100%{transform:scale(1.07)}}
+@keyframes slotIn{0%{opacity:0;transform:scale(.93)}100%{opacity:1;transform:none}}
+@keyframes rp{0%{transform:scale(0);opacity:.55}100%{transform:scale(1);opacity:0}}
+@keyframes sheen2{0%,68%{background-position:150% 0}100%{background-position:-50% 0}}
+.scr.on.inF{animation:slideF .45s cubic-bezier(.2,.8,.2,1) both!important}.scr.on.inB{animation:slideB .45s cubic-bezier(.2,.8,.2,1) both!important}
+.inF .stp,.inB .stp,.inF .mcard,.inB .mcard,.inF .cc,.inB .cc,.inF #carStats,.inB #carStats,.inF #tuneBox,.inB #tuneBox,.inF #carOk,.inB #carOk,.inF #mapNext,.inB #mapNext,.inF #go,.inB #go{animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d,0ms)}
+.inF #bcar .bt,.inB #bcar .bt{animation:fadeIn .6s backwards;animation-delay:var(--d,0ms)}
+.mcard{transition:transform .25s,border-color .25s}.mcard:active{transform:scale(.98)}.mcard.sel{transform:translateY(-3px)}.mcard.sel img{animation:kb 9s ease-in-out infinite alternate}.mcard.sel::after{animation:pop .35s}
+#mpSlots .sl.full{animation:slotIn .45s cubic-bezier(.2,.8,.2,1)}#mpSlots .tk.on{animation:pop .3s}#mpRoster .mpPlayer{animation:rise .4s backwards}
+#carStats .bar i{transition:width .7s cubic-bezier(.2,.8,.2,1)}
+#go,#carOk,#mapNext,#mpStart,#slStart,.mcard{position:relative;overflow:hidden}#carOk{position:absolute!important}#go{position:sticky!important}
+#go::after,#carOk::after,#mapNext::after{content:"";display:block!important;position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.4) 50%,transparent 60%);background-size:250% 100%;animation:sheen2 5s ease-in-out infinite}
+.rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);width:160px;height:160px;margin:-80px 0 0 -80px;pointer-events:none;animation:rp .55s ease-out forwards}
 </style></head><body>
 <div id="fx"></div>
 <div id="hud">
@@ -1380,7 +1400,7 @@ $('go').onclick=startRace;
 // ---------- loop
 let last=performance.now(),camH=0,uiFrame=0;const camTarget=new THREE.Vector3();
 function tick(now){requestAnimationFrame(tick);const dt0=Math.min(.04,(now-last)/1000);last=now;
- if(state=='menu'){tt+=dt0;if(pv){const a=menuAng+tt*.25;const mr=(curScr==='scMP')?11.6:(curScr==='scCar'?6.4:8.6);pv.rotation.y=.62-(typeof menuAng!=='undefined'?menuAng:0)*.6+Math.sin(tt*.6)*.025;if(pv.userData&&pv.userData.fronts)pv.userData.fronts.forEach(fw=>fw.rotation.y=.38);cam.position.set(0,mr>9?2.3:1.9,mr);cam.lookAt(0,.7,0);if(cam.fov!=40){cam.fov=40;cam.updateProjectionMatrix()}}if(window.slDraw&&slDraw())return;ren.render(scene,cam);return}
+ if(state=='menu'){tt+=dt0;if(pv){const a=menuAng+tt*.25;const mr=(curScr==='scMP')?11.6:(curScr==='scCar'?6.4:8.6);pv.rotation.y=.62-(typeof menuAng!=='undefined'?menuAng:0)*.6+Math.sin(tt*.6)*.025;if(pv.userData&&pv.userData.fronts)pv.userData.fronts.forEach(fw=>fw.rotation.y=.38);cam.position.set(Math.sin(tt*.22)*.35,(mr>9?2.3:1.9)+Math.sin(tt*.31)*.06,mr);cam.lookAt(0,.7,0);if(cam.fov!=40){cam.fov=40;cam.updateProjectionMatrix()}}if(window.slDraw&&slDraw())return;ren.render(scene,cam);return}
  if(paused){ren.render(scene,cam);return}
  const dt=dt0;tt+=dt;const racing=state=='race'||state=='done'; if(state!=='menu'){ $('menu').style.display='none'; $('mset').style.display='none'; }
  if(state=='count'){ $('menu').classList.add('raceHidden'); $('menu').style.display='none'; $('mset').style.display='none'; $('hud').style.display='block'; $('ctl').style.display='flex'; cd-=dt;const n=Math.ceil(cd-.4);$('big').textContent=n>0?n:'GO!';if(cd<=0){state='race';$('big').textContent=''}}
@@ -2502,5 +2522,19 @@ E('carOk').addEventListener('click',e=>{const sv=window.__sv;if(sv&&!sv.own.incl
 E('mapBack').onclick=()=>showScr('scCar');E('mapNext').onclick=()=>showScr('scSP');
 const sb=document.querySelector('#scSP .hdr .back');if(sb)sb.addEventListener('click',e=>{e.stopImmediatePropagation();showScr('scMap')},true);
 const h=document.querySelector('#scSP .hdr h2');if(h)h.textContent='SOZLAMALAR';mark()})();
+</script>
+<script>
+(function(){const ORD=['scHome','scCar','scMap','scSP'];let last='scHome';
+document.querySelectorAll('.scr').forEach(el=>new MutationObserver(()=>{const on=el.classList.contains('on');if(on&&!el._on){const a=ORD.indexOf(last),b=ORD.indexOf(el.id);last=el.id;
+ el.querySelectorAll('.stp,.mcard,.cc,#carStats,#tuneBox,#carOk,#mapNext,#go,#bcar .bt').forEach((n,i)=>n.style.setProperty('--d',Math.min(i,12)*50+'ms'));
+ el.classList.remove('inF','inB');void el.offsetWidth;el.classList.add(b>=a?'inF':'inB');setTimeout(()=>el.classList.remove('inF','inB'),1200);if(el.id==='scCar')lastCar=-1}el._on=on}).observe(el,{attributes:true,attributeFilter:['class']}));
+// ripple
+document.addEventListener('pointerdown',e=>{const t=e.target.closest('#go,#carOk,#mapNext,#mpStart,.mcard');if(!t)return;const r=t.getBoundingClientRect(),d=document.createElement('span');d.className='rp';d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';t.appendChild(d);setTimeout(()=>d.remove(),600)},true);
+// car stats animation + car slide-in
+let lastCar=-1,carT=0;
+function animStats(){document.querySelectorAll('#carStats .bar i').forEach(i=>{const w=i.style.width;i.style.transition='none';i.style.width='0%';void i.offsetWidth;i.style.transition='';i.style.width=w});
+ document.querySelectorAll('#carStats .st b').forEach(b=>{const m=b.textContent.match(/^([\d.,]+)(.*)$/);if(!m)return;const to=parseFloat(m[1].replace(/,/g,'')),dec=(m[1].split('.')[1]||'').length,suf=m[2],t0=performance.now();const f=n=>{const k=Math.min(1,(n-t0)/600),v=to*(1-Math.pow(1-k,3));if(k<1){b.textContent=v.toFixed(dec)+suf;requestAnimationFrame(f)}else b.textContent=m[1]+suf};requestAnimationFrame(f)})}
+const _u=ui;ui=function(){_u();if(sel.car!==lastCar){lastCar=sel.car;carT=performance.now();try{animStats()}catch(_){}}};
+(function loop(){requestAnimationFrame(loop);try{if(pv&&state==='menu'){const t=Math.min(1,(performance.now()-carT)/650),e=1-Math.pow(1-t,3);pv.position.x=(curScr==='scCar')?(1-e)*3.2:0}}catch(_){}})()})();
 </script>
 </body></html>
